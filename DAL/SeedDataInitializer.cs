@@ -38,7 +38,8 @@ public static class SeedDataInitializer
     
         if (await userManager.Users.AnyAsync()) return;
 
-        var userData = await File.ReadAllTextAsync(path + @"/SeedData/UserSeedData.json");
+        var projectPath = Path.GetFullPath(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"../../../../DAL/SeedData"));
+        var userData = await File.ReadAllTextAsync(Path.Combine(projectPath, "UserSeedData.json"));
 
         var options = new JsonSerializerOptions{PropertyNameCaseInsensitive = true};
 
@@ -84,7 +85,8 @@ public static class SeedDataInitializer
             Education = "Admin Education",
             Work = "Admin Work",
             SpecializationId = 1,
-            Photos = new List<Photo> { new Photo { Url = "https://example.com/admin.jpg", IsMain = true, IsApproved = true } }
+            Photos = new List<Photo> { new Photo { Url = "https://example.com/admin.jpg", IsMain = true, IsApproved = true, PublicId = "PublicId4",
+                 } }
         };
 
         await userManager.CreateAsync(admin, "Pa$$w0rd!");
