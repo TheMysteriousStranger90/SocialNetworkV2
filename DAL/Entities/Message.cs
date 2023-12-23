@@ -4,16 +4,14 @@ namespace DAL.Entities;
 
 public class Message : BaseEntity
 {
-    [ForeignKey("SenderId")]
-    public AppUser Sender { get; set; }
+    [ForeignKey("SenderId")] public AppUser Sender { get; set; }
     public int SenderId { get; set; }
     public string SenderUsername { get; set; }
-    
-    [ForeignKey("RecipientId")]
-    public AppUser Recipient { get; set; }
+
+    [ForeignKey("RecipientId")] public AppUser Recipient { get; set; }
     public int RecipientId { get; set; }
     public string RecipientUsername { get; set; }
-    
+
     public string Content { get; set; }
     public DateTime? DateRead { get; set; }
     public DateTime MessageSent { get; set; } = DateTime.UtcNow;

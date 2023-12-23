@@ -6,10 +6,10 @@ namespace DAL.Entities;
 public class AppUser : IdentityUser<int>
 {
     public DateOnly DateOfBirth { get; set; }
-    
+
     public DateTime Created { get; set; } = DateTime.UtcNow;
     public DateTime LastActive { get; set; } = DateTime.UtcNow;
-    
+
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public string City { get; set; }
@@ -18,27 +18,35 @@ public class AppUser : IdentityUser<int>
     public string Introduction { get; set; }
     public string LookingFor { get; set; }
     public string Interests { get; set; }
-    
+    public bool ProfileVisibility { get; set; }
+    public string RelationshipStatus { get; set; }
+    public string Education { get; set; }
+    public string Work { get; set; }
+
     public virtual Specialization Specialization { get; set; }
     public int? SpecializationId { get; set; }
-    
+
     public List<Photo> Photos { get; set; } = new();
 
-    [InverseProperty("SourceUser")]
-    public ICollection<UserLike> LikedByUsers { get; set; }
+    [InverseProperty("SourceUser")] public ICollection<UserLike> LikedByUsers { get; set; }
 
-    [InverseProperty("TargetUser")]
-    public ICollection<UserLike> LikedUsers { get; set; }
+    [InverseProperty("TargetUser")] public ICollection<UserLike> LikedUsers { get; set; }
 
     public ICollection<Message> MessagesSent { get; set; }
     public ICollection<Message> MessagesReceived { get; set; }
-    
+    public ICollection<Album> Albums { get; set; }
+    public ICollection<Event> Events { get; set; }
+    public ICollection<FeedItem> FeedItems { get; set; }
+    public ICollection<Follow> Following { get; set; }
+    public ICollection<Follow> Followers { get; set; }
+    public ICollection<EventParticipant> EventsParticipated { get; set; }
+
     public virtual ICollection<UserFriends> UserIsFriend { get; set; }
     public virtual ICollection<UserFriends> ThisUserFriends { get; set; }
 
     public ICollection<AppUserRole> UserRoles { get; set; }
-    
-    
+
+
     public AppUser()
     {
         UserIsFriend ??= new HashSet<UserFriends>();

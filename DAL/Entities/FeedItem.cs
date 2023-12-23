@@ -4,8 +4,7 @@ namespace DAL.Entities;
 
 public class FeedItem : BaseEntity
 {
-    [ForeignKey("UserId")]
-    public AppUser User { get; set; }
+    [ForeignKey("UserId")] public AppUser User { get; set; }
     public int UserId { get; set; }
 
     public string Content { get; set; }
