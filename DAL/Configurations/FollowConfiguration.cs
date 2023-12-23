@@ -8,16 +8,16 @@ public class FollowConfiguration : IEntityTypeConfiguration<Follow>
 {
     public void Configure(EntityTypeBuilder<Follow> builder)
     {
-        builder.HasKey(f => new { f.FollowerId, f.FollowedId });
+        builder.HasKey(x => new { x.FollowerId, x.FollowedId });
 
-        builder.HasOne(f => f.Follower)
-            .WithMany(u => u.Following)
-            .HasForeignKey(f => f.FollowerId)
-            .OnDelete(DeleteBehavior.Cascade);
+        builder.HasOne(x => x.Followed)
+            .WithMany(x => x.Followers)
+            .HasForeignKey(x => x.FollowedId)
+            .OnDelete(DeleteBehavior.NoAction);
 
-        builder.HasOne(f => f.Followed)
-            .WithMany(u => u.Followers)
-            .HasForeignKey(f => f.FollowedId)
-            .OnDelete(DeleteBehavior.Cascade);
+        builder.HasOne(x => x.Follower)
+            .WithMany(x => x.Following)
+            .HasForeignKey(x => x.FollowerId)
+            .OnDelete(DeleteBehavior.NoAction);
     }
 }

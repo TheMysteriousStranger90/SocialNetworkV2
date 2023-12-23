@@ -23,6 +23,6 @@ public class AppUserConfiguration : IEntityTypeConfiguration<AppUser>
             .IsRequired();
 
         builder.Property(x => x.DateOfBirth)
-            .HasConversion<DateOnlyConverter, DateOnlyComparer>();
+            .HasConversion(new DateOnlyToDateTimeConverter());
     }
 }

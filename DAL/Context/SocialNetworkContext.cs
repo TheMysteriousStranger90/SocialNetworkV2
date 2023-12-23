@@ -45,6 +45,6 @@ public class SocialNetworkContext : IdentityDbContext<AppUser, AppRole, int,
         modelBuilder.ApplyConfiguration(new FeedItemConfiguration());
         modelBuilder.ApplyConfiguration(new FollowConfiguration());
         
-
+        SeedDataInitializer.SeedSpecialization(modelBuilder);
     }
 }
