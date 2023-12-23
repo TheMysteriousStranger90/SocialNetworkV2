@@ -2,6 +2,10 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "WebAPI\WebAPI.csproj", "{3FC92CD6-68B3-4FF8-9FD2-32D5F4B76586}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{C13A8A88-C769-45A8-83DB-410ED86F8D3A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{57275419-BC1B-470F-BEC4-73E70403EF79}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +16,13 @@ Global
 		{3FC92CD6-68B3-4FF8-9FD2-32D5F4B76586}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3FC92CD6-68B3-4FF8-9FD2-32D5F4B76586}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3FC92CD6-68B3-4FF8-9FD2-32D5F4B76586}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C13A8A88-C769-45A8-83DB-410ED86F8D3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C13A8A88-C769-45A8-83DB-410ED86F8D3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C13A8A88-C769-45A8-83DB-410ED86F8D3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C13A8A88-C769-45A8-83DB-410ED86F8D3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57275419-BC1B-470F-BEC4-73E70403EF79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57275419-BC1B-470F-BEC4-73E70403EF79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57275419-BC1B-470F-BEC4-73E70403EF79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57275419-BC1B-470F-BEC4-73E70403EF79}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
