@@ -39,6 +39,7 @@ public class AppUser : IdentityUser<int>
     public ICollection<FeedItem> FeedItems { get; set; }
     public ICollection<Follow> Following { get; set; }
     public ICollection<Follow> Followers { get; set; }
+    public ICollection<Rating> Ratings { get; set; }
     public ICollection<EventParticipant> EventsParticipated { get; set; }
 
     public virtual ICollection<UserFriends> UserIsFriend { get; set; }
