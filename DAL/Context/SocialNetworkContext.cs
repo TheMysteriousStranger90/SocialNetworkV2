@@ -27,6 +27,9 @@ public class SocialNetworkContext : IdentityDbContext<AppUser, AppRole, int,
     public DbSet<EventParticipant> EventParticipants { get; set; }
     public DbSet<FeedItem> FeedItems { get; set; }
     public DbSet<Follow> Follows { get; set; }
+    public DbSet<Notification> Notifications { get; set; }
+    public DbSet<UserFriends> UserFriends { get; set; }
+    public DbSet<UserBlock> UserBlocks { get; set; }
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -44,6 +47,7 @@ public class SocialNetworkContext : IdentityDbContext<AppUser, AppRole, int,
         modelBuilder.ApplyConfiguration(new EventParticipantConfiguration());
         modelBuilder.ApplyConfiguration(new FeedItemConfiguration());
         modelBuilder.ApplyConfiguration(new FollowConfiguration());
+        modelBuilder.ApplyConfiguration(new UserBlockConfiguration());
         
         SeedDataInitializer.SeedSpecialization(modelBuilder);
     }

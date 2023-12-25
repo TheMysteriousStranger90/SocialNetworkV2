@@ -1,4 +1,6 @@
-﻿using DAL.Context;
+﻿using DAL;
+using DAL.Context;
+using DAL.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace WebAPI.Extensions;
@@ -12,6 +14,8 @@ public static class ApplicationServicesExtensions
         {
             options.UseSqlServer(config.GetConnectionString("DefaultConnection"));
         });
+        
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
         
         return services;
     }

@@ -395,6 +395,34 @@ namespace DAL.Migrations
                     b.ToTable("Messages");
                 });
 
+            modelBuilder.Entity("DAL.Entities.Notification", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsRead")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Notifications");
+                });
+
             modelBuilder.Entity("DAL.Entities.Photo", b =>
                 {
                     b.Property<int>("Id")
@@ -503,6 +531,21 @@ namespace DAL.Migrations
                         });
                 });
 
+            modelBuilder.Entity("DAL.Entities.UserBlock", b =>
+                {
+                    b.Property<int>("SourceUserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("BlockedUserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("SourceUserId", "BlockedUserId");
+
+                    b.HasIndex("BlockedUserId");
+
+                    b.ToTable("UserBlocks");
+                });
+
             modelBuilder.Entity("DAL.Entities.UserFriends", b =>
                 {
                     b.Property<int?>("AppUserId")
@@ -518,7 +561,7 @@ namespace DAL.Migrations
 
                     b.HasIndex("AppUserFriendId");
 
-                    b.ToTable("UsersFriends");
+                    b.ToTable("UserFriends");
                 });
 
             modelBuilder.Entity("DAL.Entities.UserLike", b =>
@@ -757,6 +800,17 @@ namespace DAL.Migrations
                     b.Navigation("Sender");
                 });
 
+            modelBuilder.Entity("DAL.Entities.Notification", b =>
+                {
+                    b.HasOne("DAL.Entities.AppUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("DAL.Entities.Photo", b =>
                 {
                     b.HasOne("DAL.Entities.Album", null)
@@ -789,6 +843,25 @@ namespace DAL.Migrations
                     b.Navigation("Photo");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("DAL.Entities.UserBlock", b =>
+                {
+                    b.HasOne("DAL.Entities.AppUser", "BlockedUser")
+                        .WithMany("BlockedByUsers")
+                        .HasForeignKey("BlockedUserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("DAL.Entities.AppUser", "SourceUser")
+                        .WithMany("BlockedUsers")
+                        .HasForeignKey("SourceUserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("BlockedUser");
+
+                    b.Navigation("SourceUser");
                 });
 
             modelBuilder.Entity("DAL.Entities.UserFriends", b =>
@@ -878,6 +951,10 @@ namespace DAL.Migrations
             modelBuilder.Entity("DAL.Entities.AppUser", b =>
                 {
                     b.Navigation("Albums");
+
+                    b.Navigation("BlockedByUsers");
+
+                    b.Navigation("BlockedUsers");
 
                     b.Navigation("Events");
 
