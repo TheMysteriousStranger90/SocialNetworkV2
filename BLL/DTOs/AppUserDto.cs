@@ -15,6 +15,7 @@ public class AppUserDto
     public string Education { get; set; }
     public string Work { get; set; }
     public bool ProfileVisibility { get; set; }
+    public string Token { get; set; }
     public virtual ICollection<int> ThisUserFriendIds { get; set; }
     public virtual ICollection<int> ThisBlockedUsersIds { get; set; }
 }

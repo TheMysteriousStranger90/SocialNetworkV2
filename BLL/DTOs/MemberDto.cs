@@ -1,12 +1,17 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿namespace BLL.DTOs;
 
-namespace BLL.DTOs;
-
-public class RegisterDto
+public class MemberDto
 {
-    [Required] public string UserName { get; set; }
+    public int Id { get; set; }
+    public string UserName { get; set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }
+    public string Email { get; set; }
+    public string PhotoUrl { get; set; }
+    public int Age { get; set; }
+    public DateTime Created { get; set; }
+    public DateTime LastActive { get; set; }
+    public string Specialization { get; set; }
     public string City { get; set; }
     public string Country { get; set; }
     public string Gender { get; set; }
@@ -16,11 +21,5 @@ public class RegisterDto
     public string RelationshipStatus { get; set; }
     public string Education { get; set; }
     public string Work { get; set; }
-    public bool ProfileVisibility { get; set; }
-    [Required] public DateOnly? DateOfBirth { get; set; }
-    [Required] [EmailAddress] public string Email { get; set; }
-
-    [Required]
-    [StringLength(30, MinimumLength = 6)]
-    public string Password { get; set; }
+    public List<PhotoDto> Photos { get; set; }
 }
