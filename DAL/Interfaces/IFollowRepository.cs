@@ -2,7 +2,7 @@
 
 namespace DAL.Interfaces;
 
-public interface IFollowRepository
+public interface IFollowRepository : IGenericRepository<Follow>
 {
     Task<IEnumerable<AppUser>> GetFollowedUsersAsync(int userId);
     Task<IEnumerable<AppUser>> GetFollowersAsync(int userId);

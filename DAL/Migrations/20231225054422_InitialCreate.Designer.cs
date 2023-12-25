@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(SocialNetworkContext))]
-    [Migration("20231223114029_InitialCreate")]
+    [Migration("20231225054422_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -531,6 +531,12 @@ namespace DAL.Migrations
 
                     b.Property<int>("TargetUserId")
                         .HasColumnType("int");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsLike")
+                        .HasColumnType("bit");
 
                     b.HasKey("SourceUserId", "TargetUserId");
 

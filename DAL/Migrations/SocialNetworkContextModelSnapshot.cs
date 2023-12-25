@@ -529,6 +529,12 @@ namespace DAL.Migrations
                     b.Property<int>("TargetUserId")
                         .HasColumnType("int");
 
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsLike")
+                        .HasColumnType("bit");
+
                     b.HasKey("SourceUserId", "TargetUserId");
 
                     b.HasIndex("TargetUserId");

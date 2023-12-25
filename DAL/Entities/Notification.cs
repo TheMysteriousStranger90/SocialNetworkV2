@@ -8,6 +8,6 @@ public class Notification : BaseEntity
     public bool IsRead { get; set; }
     public DateTime CreatedAt { get; set; }
 
-    public string UserId { get; set; }
+    public int UserId { get; set; }
     [ForeignKey("UserId")] public AppUser User { get; set; }
 }

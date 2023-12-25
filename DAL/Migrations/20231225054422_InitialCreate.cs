@@ -316,7 +316,9 @@ namespace DAL.Migrations
                 columns: table => new
                 {
                     SourceUserId = table.Column<int>(type: "int", nullable: false),
-                    TargetUserId = table.Column<int>(type: "int", nullable: false)
+                    TargetUserId = table.Column<int>(type: "int", nullable: false),
+                    IsLike = table.Column<bool>(type: "bit", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
