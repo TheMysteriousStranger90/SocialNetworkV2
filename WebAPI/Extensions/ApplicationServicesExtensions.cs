@@ -7,6 +7,7 @@ using DAL.Context;
 using DAL.Interfaces;
 using DAL.Repositories;
 using Microsoft.EntityFrameworkCore;
+using WebAPI.SignalR;
 
 namespace WebAPI.Extensions;
 
@@ -40,6 +41,9 @@ public static class ApplicationServicesExtensions
         
         services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
         services.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings"));
+        
+        services.AddSignalR();
+        services.AddSingleton<PresenceTracker>();
         
         return services;
     }
