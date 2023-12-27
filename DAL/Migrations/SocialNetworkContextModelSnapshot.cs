@@ -22,32 +22,6 @@ namespace DAL.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("DAL.Entities.Album", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Albums");
-                });
-
             modelBuilder.Entity("DAL.Entities.AppRole", b =>
                 {
                     b.Property<int>("Id")
@@ -431,9 +405,6 @@ namespace DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("AlbumId")
-                        .HasColumnType("int");
-
                     b.Property<int>("AppUserId")
                         .HasColumnType("int");
 
@@ -458,8 +429,6 @@ namespace DAL.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AlbumId");
 
                     b.HasIndex("AppUserId");
 
@@ -673,17 +642,6 @@ namespace DAL.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("DAL.Entities.Album", b =>
-                {
-                    b.HasOne("DAL.Entities.AppUser", "User")
-                        .WithMany("Albums")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("DAL.Entities.AppUser", b =>
                 {
                     b.HasOne("DAL.Entities.Specialization", "Specialization")
@@ -813,10 +771,6 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("DAL.Entities.Photo", b =>
                 {
-                    b.HasOne("DAL.Entities.Album", null)
-                        .WithMany("Photos")
-                        .HasForeignKey("AlbumId");
-
                     b.HasOne("DAL.Entities.AppUser", "AppUser")
                         .WithMany("Photos")
                         .HasForeignKey("AppUserId")
@@ -938,11 +892,6 @@ namespace DAL.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("DAL.Entities.Album", b =>
-                {
-                    b.Navigation("Photos");
-                });
-
             modelBuilder.Entity("DAL.Entities.AppRole", b =>
                 {
                     b.Navigation("UserRoles");
@@ -950,8 +899,6 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("DAL.Entities.AppUser", b =>
                 {
-                    b.Navigation("Albums");
-
                     b.Navigation("BlockedByUsers");
 
                     b.Navigation("BlockedUsers");

@@ -17,7 +17,6 @@ public class UnitOfWork : IUnitOfWork, IDisposable
     private IPhotoRepository _photoRepository;
     private ISpecializationRepository _specializationRepository;
     private IRatingRepository _ratingRepository;
-    private IAlbumRepository _albumRepository;
     private IEventRepository _eventRepository;
     private IFeedItemRepository _feedItemRepository;
     private IFollowRepository _followRepository;
@@ -63,8 +62,6 @@ public class UnitOfWork : IUnitOfWork, IDisposable
     
     public ISpecializationRepository SpecializationRepository => _specializationRepository ??= new SpecializationRepository(_context);
     
-    public IAlbumRepository AlbumRepository => _albumRepository ??= new AlbumRepository(_context);
-
     public IEventRepository EventRepository => _eventRepository ??= new EventRepository(_context);
 
     public IFeedItemRepository FeedItemRepository => _feedItemRepository ??= new FeedItemRepository(_context);

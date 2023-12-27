@@ -27,7 +27,6 @@ public class AppUser : IdentityUser<int>
     [InverseProperty("TargetUser")] public ICollection<UserLike> LikedUsers { get; set; }
     public ICollection<Message> MessagesSent { get; set; }
     public ICollection<Message> MessagesReceived { get; set; }
-    public ICollection<Album> Albums { get; set; }
     public ICollection<Event> Events { get; set; }
     public ICollection<FeedItem> FeedItems { get; set; }
     public ICollection<Follow> Following { get; set; }

@@ -11,7 +11,6 @@ public interface IUnitOfWork
     ILikesRepository LikesRepository { get; }
     IPhotoRepository PhotoRepository { get; }
     IRatingRepository RatingRepository { get; }
-    IAlbumRepository AlbumRepository { get; }
     IEventRepository EventRepository { get; }
     IFeedItemRepository FeedItemRepository { get; }
     IFollowRepository FollowRepository { get; }

@@ -22,7 +22,6 @@ public class SocialNetworkContext : IdentityDbContext<AppUser, AppRole, int,
     public DbSet<UserFriends> UsersFriends { get; set; }
     public DbSet<Rating> Ratings { get; set; }
     public DbSet<Photo> Photos { get; set; }
-    public DbSet<Album> Albums { get; set; }
     public DbSet<Event> Events { get; set; }
     public DbSet<EventParticipant> EventParticipants { get; set; }
     public DbSet<FeedItem> FeedItems { get; set; }
@@ -42,7 +41,6 @@ public class SocialNetworkContext : IdentityDbContext<AppUser, AppRole, int,
         modelBuilder.ApplyConfiguration(new UserFriendsConfiguration());
         modelBuilder.ApplyConfiguration(new PhotoConfiguration());
         modelBuilder.ApplyConfiguration(new RatingConfiguration());
-        modelBuilder.ApplyConfiguration(new AlbumConfiguration());
         modelBuilder.ApplyConfiguration(new EventConfiguration());
         modelBuilder.ApplyConfiguration(new EventParticipantConfiguration());
         modelBuilder.ApplyConfiguration(new FeedItemConfiguration());
