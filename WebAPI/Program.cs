@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using WebAPI.Extensions;
 using WebAPI.Middleware;
+using WebAPI.SignalR;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,12 +16,14 @@ builder.Services.AddControllers();
 
 builder.Services.AddApplicationServices(builder.Configuration);
 builder.Services.AddIdentityServices(builder.Configuration);
-
+builder.Services.AddSwaggerDocumentation();
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
 
 var app = builder.Build();
+
+app.UseSwaggerDocumentation();
 
 app.UseMiddleware<ExceptionMiddleware>();
 
@@ -33,9 +36,17 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
+app.UseDefaultFiles();
+app.UseStaticFiles();
+
 app.MapControllers();
+app.MapHub<PresenceHub>("hubs/presence");
+app.MapHub<MessageHub>("hubs/message");
+app.MapHub<VideoHub>("hubs/video");
+
 
 using var scope = app.Services.CreateScope();
 var services = scope.ServiceProvider;

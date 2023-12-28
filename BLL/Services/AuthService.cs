@@ -53,7 +53,9 @@ public class AuthService : IAuthService
         if (await CheckEmailExistsAsync(registerDto.Email)) throw new SocialNetworkException("Email is taken");
 
         var user = _mapper.Map<AppUser>(registerDto);
-
+        
+        user.SpecializationId = 1;
+        user.ProfileVisibility = true;
         user.UserName = registerDto.UserName.ToLower();
 
         var result = await _unitOfWork.UserManager.CreateAsync(user, registerDto.Password);
@@ -73,7 +75,8 @@ public class AuthService : IAuthService
             Token = await _tokenService.CreateToken(user),
             Gender = user.Gender,
             Country = user.Country,
-            City = user.City
+            City = user.City,
+            ProfileVisibility = true
         };
     }
 
