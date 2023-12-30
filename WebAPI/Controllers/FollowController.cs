@@ -18,35 +18,70 @@ public class FollowController : BaseApiController
     [HttpGet("{userName}/followed")]
     public async Task<ActionResult<IEnumerable<AppUserDto>>> GetFollowedUsers(string userName)
     {
-        var followedUsers = await _followService.GetFollowedUsersAsync(userName);
-        return Ok(followedUsers);
+        try
+        {
+            var followedUsers = await _followService.GetFollowedUsersAsync(userName);
+            return Ok(followedUsers);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 
     [HttpGet("{userName}/followers")]
     public async Task<ActionResult<IEnumerable<AppUserDto>>> GetFollowers(string userName)
     {
-        var followers = await _followService.GetFollowersAsync(userName);
-        return Ok(followers);
+        try
+        {
+            var followers = await _followService.GetFollowersAsync(userName);
+            return Ok(followers);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 
     [HttpPost("{userName}/follow/{followedUserName}")]
     public async Task<ActionResult> FollowUser(string userName, string followedUserName)
     {
-        await _followService.FollowUserAsync(userName, followedUserName);
-        return Ok();
+        try
+        {
+            await _followService.FollowUserAsync(userName, followedUserName);
+            return Ok();
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 
     [HttpDelete("{userName}/unfollow/{followedUserName}")]
     public async Task<ActionResult> UnfollowUser(string userName, string followedUserName)
     {
-        await _followService.UnfollowUserAsync(userName, followedUserName);
-        return Ok();
+        try
+        {
+            await _followService.UnfollowUserAsync(userName, followedUserName);
+            return Ok();
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 
     [HttpGet("{userName}/is-following/{otherUserName}")]
     public async Task<ActionResult<bool>> IsFollowing(string userName, string otherUserName)
     {
-        var isFollowing = await _followService.IsFollowingAsync(userName, otherUserName);
-        return Ok(isFollowing);
+        try
+        {
+            var isFollowing = await _followService.IsFollowingAsync(userName, otherUserName);
+            return Ok(isFollowing);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 }

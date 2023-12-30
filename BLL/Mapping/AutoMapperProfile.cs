@@ -19,6 +19,9 @@ public class AutoMapperProfile : Profile
             .ForMember(dest => dest.ThisUserFriendIds,
                 opt => opt.MapFrom(src => src.ThisUserFriends.Select(item => item.AppUserFriendId)));
 
+        CreateMap<AppUser, AppUserDto>()
+            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id));
+        
         CreateMap<Photo, PhotoDto>();
         CreateMap<Photo, PhotoForApprovalDto>();
         CreateMap<Specialization, SpecializationDto>();

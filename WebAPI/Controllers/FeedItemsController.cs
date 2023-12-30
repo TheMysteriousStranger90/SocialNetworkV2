@@ -18,14 +18,29 @@ public class FeedItemsController : BaseApiController
     [HttpGet("{userName}")]
     public async Task<ActionResult<IEnumerable<FeedItemDto>>> GetFeedItemsByUserName(string userName)
     {
-        var feedItems = await _feedItemService.GetFeedItemsByUserNameAsync(userName);
-        return Ok(feedItems);
+        try
+        {
+            var feedItems = await _feedItemService.GetFeedItemsByUserNameAsync(userName);
+            return Ok(feedItems);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 
     [HttpGet("date-range")]
-    public async Task<ActionResult<IEnumerable<FeedItemDto>>> GetFeedItemsInDateRange([FromQuery] DateTime start, [FromQuery] DateTime end)
+    public async Task<ActionResult<IEnumerable<FeedItemDto>>> GetFeedItemsInDateRange([FromQuery] DateTime start,
+        [FromQuery] DateTime end)
     {
-        var feedItems = await _feedItemService.GetFeedItemsInDateRangeAsync(start, end);
-        return Ok(feedItems);
+        try
+        {
+            var feedItems = await _feedItemService.GetFeedItemsInDateRangeAsync(start, end);
+            return Ok(feedItems);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 }

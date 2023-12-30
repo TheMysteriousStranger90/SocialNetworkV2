@@ -46,7 +46,7 @@ public class AdminController : BaseApiController
             return BadRequest(ex.Message);
         }
     }
-    
+
     [Authorize(Policy = "RequireAdminRole")]
     [HttpGet("roles")]
     public async Task<ActionResult> GetRoles()
@@ -61,7 +61,7 @@ public class AdminController : BaseApiController
             return BadRequest(ex.Message);
         }
     }
-    
+
     [Authorize(Policy = "RequireAdminRole")]
     [HttpPost("add-role")]
     public async Task<ActionResult> AddRole(string roleName)
@@ -136,7 +136,7 @@ public class AdminController : BaseApiController
             return BadRequest(ex.Message);
         }
     }
-    
+
     [Authorize(Policy = "RequireAdminRole")]
     [HttpPost("lock-user/{userName}")]
     public async Task<ActionResult> LockUser(string userName)

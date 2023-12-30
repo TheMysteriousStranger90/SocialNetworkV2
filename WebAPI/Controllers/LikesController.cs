@@ -22,21 +22,35 @@ public class LikesController : BaseApiController
     [HttpPost("{username}")]
     public async Task<ActionResult> AddLike(string userName)
     {
-        var sourceUserId = User.GetUserId();
-        await _likeService.AddLike(userName, sourceUserId);
-        return Ok();
+        try
+        {
+            var sourceUserId = User.GetUserId();
+            await _likeService.AddLike(userName, sourceUserId);
+            return Ok();
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 
     [HttpGet]
     public async Task<ActionResult<Pagination<LikeDto>>> GetUserLikes([FromQuery] LikesParams likesParams)
     {
-        likesParams.AppUserId = User.GetUserId();
+        try
+        {
+            likesParams.AppUserId = User.GetUserId();
 
-        var users = await _likeService.GetUserLikes(likesParams);
+            var users = await _likeService.GetUserLikes(likesParams);
 
-        Response.AddPaginationHeader(new PaginationHeader(users.CurrentPage,
-            users.PageSize, users.TotalCount, users.TotalPages));
+            Response.AddPaginationHeader(new PaginationHeader(users.CurrentPage,
+                users.PageSize, users.TotalCount, users.TotalPages));
 
-        return Ok(users);
+            return Ok(users);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 }

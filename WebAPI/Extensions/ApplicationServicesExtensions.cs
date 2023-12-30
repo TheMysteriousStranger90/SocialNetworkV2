@@ -7,6 +7,7 @@ using DAL.Context;
 using DAL.Interfaces;
 using DAL.Repositories;
 using Microsoft.EntityFrameworkCore;
+using StackExchange.Redis;
 using WebAPI.SignalR;
 
 namespace WebAPI.Extensions;
@@ -16,9 +17,17 @@ public static class ApplicationServicesExtensions
     public static IServiceCollection AddApplicationServices(this IServiceCollection services,
         IConfiguration config)
     {
+        services.AddSingleton<IResponseCacheService, ResponseCacheService>();
+        
         services.AddDbContext<SocialNetworkContext>(options =>
         {
             options.UseSqlServer(config.GetConnectionString("DefaultConnection"));
+        });
+        
+        services.AddSingleton<IConnectionMultiplexer>(c => 
+        {
+            var options = ConfigurationOptions.Parse(config.GetConnectionString("Redis"));
+            return ConnectionMultiplexer.Connect(options);
         });
         
         services.AddScoped<IUnitOfWork, UnitOfWork>();

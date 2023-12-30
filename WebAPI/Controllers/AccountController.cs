@@ -42,7 +42,7 @@ public class AccountController : BaseApiController
             return Unauthorized(ex.Message);
         }
     }
-    
+
     [HttpPost("confirm-email")]
     public async Task<ActionResult<bool>> ConfirmEmail(string userName, string token)
     {
@@ -84,7 +84,7 @@ public class AccountController : BaseApiController
             return BadRequest(ex.Message);
         }
     }
-    
+
     [HttpGet("emailexists")]
     public async Task<ActionResult<bool>> CheckEmailExistsAsync([FromQuery] string email)
     {
@@ -110,7 +110,7 @@ public class AccountController : BaseApiController
             return BadRequest(ex.Message);
         }
     }
-    
+
     [Authorize]
     [HttpGet]
     public async Task<ActionResult<AppUserDto>> GetCurrentUser()

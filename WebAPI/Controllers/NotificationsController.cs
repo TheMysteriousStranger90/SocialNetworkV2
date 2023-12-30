@@ -19,44 +19,86 @@ public class NotificationsController : BaseApiController
     [HttpPost("{userName}")]
     public async Task<ActionResult> SendNotification(string userName, [FromBody] string content)
     {
-        await _notificationService.SendNotificationAsync(userName, content);
-        return Ok();
+        try
+        {
+            await _notificationService.SendNotificationAsync(userName, content);
+            return Ok();
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 
     [HttpPut("{userName}/read/{notificationId}")]
     public async Task<ActionResult> MarkAsRead(string userName, int notificationId)
     {
-        await _notificationService.MarkAsReadAsync(userName, notificationId);
-        return Ok();
+        try
+        {
+            await _notificationService.MarkAsReadAsync(userName, notificationId);
+            return Ok();
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 
     [HttpPut("{userName}/read-all")]
     public async Task<ActionResult> MarkAsReadAll(string userName)
     {
-        await _notificationService.MarkAsReadAllAsync(userName);
-        return Ok();
+        try
+        {
+            await _notificationService.MarkAsReadAllAsync(userName);
+            return Ok();
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 
     [Cached(600)]
     [HttpGet("{userName}")]
     public async Task<ActionResult<IEnumerable<NotificationDto>>> GetNotificationsByUserId(string userName)
     {
-        var notifications = await _notificationService.GetNotificationsByUserIdAsync(userName);
-        return Ok(notifications);
+        try
+        {
+            var notifications = await _notificationService.GetNotificationsByUserIdAsync(userName);
+            return Ok(notifications);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 
     [Cached(600)]
     [HttpGet("{userName}/unread")]
     public async Task<ActionResult<IEnumerable<NotificationDto>>> GetUnreadNotificationsByUserId(string userName)
     {
-        var notifications = await _notificationService.GetUnreadNotificationsByUserIdAsync(userName);
-        return Ok(notifications);
+        try
+        {
+            var notifications = await _notificationService.GetUnreadNotificationsByUserIdAsync(userName);
+            return Ok(notifications);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 
     [HttpPost("photo-notification/{albumId}")]
     public async Task<ActionResult> CreatePhotoToAlbumNotification(int albumId, [FromBody] PhotoDto photoDto)
     {
-        await _notificationService.CreatePhotoToAlbumNotificationAsync(albumId, photoDto);
-        return Ok();
+        try
+        {
+            await _notificationService.CreatePhotoToAlbumNotificationAsync(albumId, photoDto);
+            return Ok();
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 }
