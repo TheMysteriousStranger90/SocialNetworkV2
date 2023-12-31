@@ -4,6 +4,7 @@ import { HasRoleDirective } from './directives/has-role.directive';
 import { SharedModule } from '../shared/shared.module';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { ToastrModule } from 'ngx-toastr';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -19,7 +20,8 @@ import { ToastrModule } from 'ngx-toastr';
 
     ),
     SharedModule,
-    CommonModule
+    CommonModule,
+    RouterModule,
   ],
   exports: [
     NavBarComponent,

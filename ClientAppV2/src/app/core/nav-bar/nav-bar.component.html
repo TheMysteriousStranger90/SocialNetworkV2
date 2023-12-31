@@ -4,7 +4,7 @@
       <img src="/assets/images/logo.png" alt="logo" class="logo" style="max-height: 60px;">
     </button>
 
-    
+
     <button mat-button routerLink="/members" routerLinkActive="active">Members</button>
     <button mat-button routerLink="/lists" routerLinkActive="active">Lists</button>
     <button mat-button routerLink="/messages" routerLinkActive="active">Messages</button>
@@ -12,8 +12,8 @@
     <span class="flex-spacer"></span>
 
     <div *ngIf="(accountService.currentUser$ | async) === null">
-      <button mat-button routerLink="/account/login">Login</button>
-      <button mat-button routerLink="/account/register">Sign up</button>
+      <a routerLink="/account/login">Login</a>
+      <a routerLink="/account/register">Sign up</a>
     </div>
 
     <div *ngIf="accountService.currentUser$ | async as user">
