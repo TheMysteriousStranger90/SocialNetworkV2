@@ -1,5 +1,7 @@
 <mat-toolbar color="primary">
   <div class="container-fluid">
+
+
     <button mat-button routerLink="/">
       <img src="/assets/images/logo.png" alt="logo" class="logo" style="max-height: 60px;">
     </button>
@@ -11,9 +13,9 @@
 
     <span class="flex-spacer"></span>
 
-    <div *ngIf="(accountService.currentUser$ | async) === null">
-      <a routerLink="/account/login">Login</a>
-      <a routerLink="/account/register">Sign up</a>
+    <div class="right-align" *ngIf="(accountService.currentUser$ | async) === null">
+      <button mat-button routerLink="/account/login">Login</button>
+      <button mat-button routerLink="/account/register">Sign up</button>
     </div>
 
     <div *ngIf="accountService.currentUser$ | async as user">

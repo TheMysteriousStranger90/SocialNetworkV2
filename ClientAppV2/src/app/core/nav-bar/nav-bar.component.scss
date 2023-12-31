@@ -1,0 +1,53 @@
+mat-toolbar {
+  background-color: #9f7aea;
+
+  .container-fluid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .logo {
+      max-height: 60px;
+    }
+
+    button {
+      margin-right: 10px;
+    }
+
+    button:hover {
+      background-color: #7a63d8;
+      color: white;
+    }
+
+    button.active {
+      border-bottom: 2px solid white;
+    }
+
+    .flex-spacer {
+      flex-grow: 1;
+    }
+
+    div {
+      display: flex;
+      justify-content: flex-end;
+
+      button {
+        margin-left: 10px;
+      }
+    }
+
+    .right-align {
+      margin-left: auto;
+      
+    }
+
+    div:last-child {
+      margin-left: auto;
+    }
+
+    mat-menu {
+      background-color: #7a63d8;
+      color: white;
+    }
+  }
+}
