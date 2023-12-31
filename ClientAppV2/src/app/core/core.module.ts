@@ -20,6 +20,10 @@ import { ToastrModule } from 'ngx-toastr';
     ),
     SharedModule,
     CommonModule
+  ],
+  exports: [
+    NavBarComponent,
+    HasRoleDirective,
   ]
 })
 export class CoreModule { }

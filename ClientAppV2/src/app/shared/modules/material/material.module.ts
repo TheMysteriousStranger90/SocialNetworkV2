@@ -10,6 +10,10 @@ import {MatExpansionModule} from "@angular/material/expansion";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatRadioModule } from '@angular/material/radio';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [],
@@ -24,7 +28,12 @@ import { MatDividerModule } from '@angular/material/divider';
     MatExpansionModule,
     MatProgressBarModule,
     MatMenuModule,
-    MatDividerModule
+    MatDividerModule,
+    MatRadioModule,
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatNativeDateModule
   ],
   exports: [
     MatFormFieldModule,
@@ -36,7 +45,12 @@ import { MatDividerModule } from '@angular/material/divider';
     MatExpansionModule,
     MatProgressBarModule,
     MatMenuModule,
-    MatDividerModule
+    MatDividerModule,
+    MatRadioModule,
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatNativeDateModule
   ]
 })
 
