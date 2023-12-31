@@ -1,0 +1,30 @@
+<div class="vh-100 gradient-custom">
+  <div class="container py-2 h-25">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-4 col-md-8 col-lg-6 col-xl-5">
+        <mat-card class="bg-primary mb-3" style="border-radius: 1rem;">
+          <mat-card-content class="p-3 text-center">
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" style="color: #32fbe2">
+              <div class="mb-md-5 mt-md-4 pb-5">
+                <h2 class="fw-bold mb-2 text-uppercase " style="color: #32fbe2">Login</h2>
+                <p class="text-50 mb-5" style="color: #32fbe2">Please enter your login and password!</p>
+                <mat-form-field appearance="fill">
+                  <mat-label>Email Address</mat-label>
+                  <input matInput formControlName="email" type="email">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                  <mat-label>Password</mat-label>
+                  <input matInput formControlName="password" type="password">
+                </mat-form-field>
+                <div class="d-grid">
+                  <button mat-raised-button color="accent" [disabled]="loginForm.invalid" class="mt-3" type="submit">Sign in
+                  </button>
+                </div>
+              </div>
+            </form>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
