@@ -24,9 +24,9 @@
           <mat-icon>person</mat-icon>
           <span>Admin</span>
         </button>
-        <button mat-menu-item *appHasRole="['Administrator', 'Moderator']" routerLink="/test-error">
-          <mat-icon>bug_report</mat-icon>
-          <span>Errors</span>
+        <button mat-menu-item routerLink="/notifications">
+          <mat-icon>notifications</mat-icon>
+          <span>Notifications ({{unreadCount}})</span>
         </button>
         <button mat-menu-item routerLink="/member/edit">
           <mat-icon>edit</mat-icon>

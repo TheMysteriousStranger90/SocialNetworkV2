@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AccountService } from 'src/app/account/account.service';
+import { NotificationService } from '../notification/notification.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -7,6 +8,19 @@ import { AccountService } from 'src/app/account/account.service';
   styleUrls: ['./nav-bar.component.scss']
 })
 export class NavBarComponent {
-  constructor(public accountService: AccountService) {
+  unreadCount = 0;
+
+  constructor(public accountService: AccountService, private notificationService: NotificationService) {
+    this.accountService.currentUser$.subscribe(user => {
+      if (user) {
+        this.updateUnreadCount(user.username);
+      }
+    });
+  }
+
+  updateUnreadCount(userName: string) {
+    this.notificationService.getUnreadCount(userName).subscribe(count => {
+      this.unreadCount = count;
+    });
   }
 }

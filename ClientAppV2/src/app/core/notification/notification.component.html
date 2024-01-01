@@ -1,0 +1,16 @@
+<div class="container">
+  <h1>Notifications</h1>
+  <mat-list>
+    <mat-list-item *ngFor="let notification of notifications">
+      <div matLine>
+        {{notification.content}}
+      </div>
+      <div matLine>
+        {{notification.createdAt | date}}
+      </div>
+      <button mat-icon-button color="primary" *ngIf="!notification.isRead" (click)="markAsRead(notification)">
+        <mat-icon>done</mat-icon>
+      </button>
+    </mat-list-item>
+  </mat-list>
+</div>

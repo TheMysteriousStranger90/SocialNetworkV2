@@ -11,12 +11,14 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
+import { NotificationComponent } from './notification/notification.component';
 
 @NgModule({
   declarations: [
     HasRoleDirective,
     NavBarComponent,
-    RolesModalComponent
+    RolesModalComponent,
+    NotificationComponent
   ],
   imports: [
     ToastrModule.forRoot(
