@@ -1,0 +1,15 @@
+<h2>Photo Management Panel</h2>
+<div fxLayout="row wrap" fxLayoutGap="16px" class="m-3">
+  <div fxFlex="100" fxFlex.gt-sm="20" *ngFor='let photo of photos'>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>{{photo.username}}</mat-card-title>
+      </mat-card-header>
+      <img mat-card-image [src]='photo.url' alt='{{photo.username}}'>
+      <mat-card-actions class="card-actions">
+        <button mat-button color="primary" (click)='approvePhoto(photo.id)'>Approve</button>
+        <button mat-button color="warn" (click)='rejectPhoto(photo.id)'>Reject</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

@@ -44,7 +44,7 @@ public class AutoMapperProfile : Profile
         CreateMap<FeedItem, FeedItemDto>();
 
         CreateMap<Notification, NotificationDto>()
-            .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.User.UserName));
+            .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.User.UserName));
 
         CreateMap<Photo, PhotoDto>()
             .ForMember(dest => dest.UserVote, opt => opt.MapFrom(src => src.UserVote))
@@ -57,6 +57,6 @@ public class AutoMapperProfile : Profile
         CreateMap<UserFriends, UserFriendsDto>();
 
         CreateMap<UserLike, LikeDto>()
-            .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.SourceUser.UserName));
+            .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.SourceUser.UserName));
     }
 }

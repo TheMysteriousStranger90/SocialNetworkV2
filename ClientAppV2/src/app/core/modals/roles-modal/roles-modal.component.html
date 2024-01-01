@@ -1,0 +1,15 @@
+<mat-dialog-content class="mat-typography">
+  <h2 mat-dialog-title>Edit Roles for {{username}}</h2>
+  <form #rolesForm="ngForm" id="rolesForm">
+    <mat-checkbox *ngFor="let role of availableRoles"
+                  [(ngModel)]="roleSelections[role]"
+                  [ngModelOptions]="{standalone: true}"
+                  (ngModelChange)="updateChecked(role)"
+                  [disabled]="role === 'Administrator' && username === 'admin'">
+      {{role}}
+    </mat-checkbox>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="dialogRef.close(selectedRoles)">Submit</button>
+</mat-dialog-actions>

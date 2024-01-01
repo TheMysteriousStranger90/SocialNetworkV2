@@ -1,0 +1,11 @@
+<div class="vh-100">
+  <mat-card class="lock-unlock-container">
+    <mat-form-field appearance="fill">
+      <mat-label>Username</mat-label>
+      <input matInput [(ngModel)]="userName">
+    </mat-form-field>
+
+    <button mat-raised-button color="warn" (click)="lockUser()">Lock User</button>
+    <button mat-raised-button color="primary" (click)="unlockUser()">Unlock User</button>
+  </mat-card>
+</div>

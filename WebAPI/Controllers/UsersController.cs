@@ -36,7 +36,7 @@ public class UsersController : BaseApiController
             var photoDto = _userService.AddPhotoByUser(result, currentUsername);
             var user = _userService.GetMemberAsync(User.GetUserName(), true);
             return CreatedAtAction(nameof(GetUser),
-                new { username = user.Result.UserName }, photoDto);
+                new { username = user.Result.Username }, photoDto);
         }
         catch (Exception ex)
         {

@@ -46,7 +46,7 @@ public class UserService : IUserService
 
   public async Task UpdateUserAsync(AppUserDto userDto)
     {
-        var user = await _unitOfWork.UserRepository.GetUserByUsernameAsync(userDto.UserName);
+        var user = await _unitOfWork.UserRepository.GetUserByUsernameAsync(userDto.Username);
         _mapper.Map(userDto, user);
         _unitOfWork.UserRepository.Update(user);
         await _unitOfWork.SaveAsync();

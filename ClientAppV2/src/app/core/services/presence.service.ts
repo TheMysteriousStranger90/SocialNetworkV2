@@ -4,7 +4,7 @@ import {BehaviorSubject, take} from "rxjs";
 import {ToastrService} from "ngx-toastr";
 import {Router} from "@angular/router";
 import { User } from 'src/app/shared/models/user';
-import { environment } from 'environments/environment';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'

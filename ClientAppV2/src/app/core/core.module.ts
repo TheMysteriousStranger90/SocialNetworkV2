@@ -5,13 +5,18 @@ import { SharedModule } from '../shared/shared.module';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { ToastrModule } from 'ngx-toastr';
 import { RouterModule } from '@angular/router';
+import { RolesModalComponent } from './modals/roles-modal/roles-modal.component';
 
-
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDialogModule } from '@angular/material/dialog';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     HasRoleDirective,
-    NavBarComponent
+    NavBarComponent,
+    RolesModalComponent
   ],
   imports: [
     ToastrModule.forRoot(
@@ -22,10 +27,24 @@ import { RouterModule } from '@angular/router';
     SharedModule,
     CommonModule,
     RouterModule,
+
+
+
+
+    MatCheckboxModule,
+    MatFormFieldModule,
+    MatDialogModule,
+    FormsModule
   ],
   exports: [
     NavBarComponent,
     HasRoleDirective,
+    RolesModalComponent,
+
+
+
+    
+
   ]
 })
 export class CoreModule { }

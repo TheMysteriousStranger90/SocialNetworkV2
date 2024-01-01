@@ -39,7 +39,7 @@ public class AuthService : IAuthService
         {
             Email = user.Email,
             Token = await _tokenService.CreateToken(user),
-            UserName = user.UserName,
+            Username = user.UserName,
             PhotoUrl = user.Photos.FirstOrDefault(x => x.IsMain)?.Url,
             Gender = user.Gender,
             FirstName = user.FirstName,
@@ -49,14 +49,14 @@ public class AuthService : IAuthService
 
     public async Task<AppUserDto> RegisterAsync(RegisterDto registerDto)
     {
-        if (await CheckUserNameExistsAsync(registerDto.UserName)) throw new SocialNetworkException("UserName is taken");
+        if (await CheckUserNameExistsAsync(registerDto.Username)) throw new SocialNetworkException("UserName is taken");
         if (await CheckEmailExistsAsync(registerDto.Email)) throw new SocialNetworkException("Email is taken");
 
         var user = _mapper.Map<AppUser>(registerDto);
         
         user.SpecializationId = 1;
         user.ProfileVisibility = true;
-        user.UserName = registerDto.UserName.ToLower();
+        user.UserName = registerDto.Username.ToLower();
 
         var result = await _unitOfWork.UserManager.CreateAsync(user, registerDto.Password);
 
@@ -68,7 +68,7 @@ public class AuthService : IAuthService
 
         return new AppUserDto
         {
-            UserName = user.UserName,
+            Username = user.UserName,
             FirstName = user.FirstName,
             LastName = user.LastName,
             Email = user.Email,
@@ -96,7 +96,7 @@ public class AuthService : IAuthService
         {
             Email = user.Email,
             Token = await _tokenService.CreateToken(user),
-            UserName = user.UserName,
+            Username = user.UserName,
             FirstName = user.FirstName,
             LastName = user.LastName,
             PhotoUrl = user.Photos.FirstOrDefault(x => x.IsMain)?.Url,

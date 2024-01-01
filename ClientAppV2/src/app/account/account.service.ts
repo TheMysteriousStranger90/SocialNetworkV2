@@ -4,7 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject, map, of, ReplaySubject} from 'rxjs';
 import {Router} from '@angular/router';
 import {PresenceService} from '../core/services/presence.service';
-import { environment } from 'environments/environment';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
