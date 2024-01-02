@@ -1,0 +1,28 @@
+.padding-class {
+  padding: 20px; // Add padding around the div
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; // Use viewport height to fill the screen
+  padding: 20px;
+
+  .d-flex {
+    flex-grow: 1; // Allow this element to grow and fill the space
+    justify-content: center;
+    align-items: center;
+  }
+
+  .row {
+    // Your styles for the row
+  }
+
+  .col-2 {
+    // Your styles for the column
+  }
+}
+
+.d-flex.justify-content-center {
+  margin-top: auto; // Push the element to the bottom
+}

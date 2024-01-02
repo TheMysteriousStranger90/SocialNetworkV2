@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth.guard';
 import { adminGuard } from './core/guards/admin.guard';
+import { LikesComponent } from './likes/likes.component';
+import { NotificationComponent } from './core/notification/notification.component';
 
 const routes: Routes = [
 
@@ -10,6 +12,9 @@ const routes: Routes = [
     runGuardsAndResolvers: 'always',
     canActivate: [authGuard],
     children: [
+      {path: 'likes', component: LikesComponent},
+
+      {path: 'notification', component: NotificationComponent},
       {
         path: 'admin', canActivate: [adminGuard],
         loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule), data: {breadcrumb: {skip: true}}

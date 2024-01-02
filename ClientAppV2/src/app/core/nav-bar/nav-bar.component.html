@@ -8,12 +8,12 @@
 
 
     <button mat-button routerLink="/members" routerLinkActive="active">Members</button>
-    <button mat-button routerLink="/lists" routerLinkActive="active">Lists</button>
+    <button mat-button routerLink="/likes" routerLinkActive="active">Likes</button>
     <button mat-button routerLink="/messages" routerLinkActive="active">Messages</button>
 
     <span class="flex-spacer"></span>
 
-    <div class="right-align" *ngIf="(accountService.currentUser$ | async) === null">
+    <div class="align-end" *ngIf="(accountService.currentUser$ | async) === null">
       <button mat-button routerLink="/account/login">Login</button>
       <button mat-button routerLink="/account/register">Sign up</button>
     </div>
@@ -24,7 +24,7 @@
           <mat-icon>person</mat-icon>
           <span>Admin</span>
         </button>
-        <button mat-menu-item routerLink="/notifications">
+        <button mat-menu-item routerLink="/notification">
           <mat-icon>notifications</mat-icon>
           <span>Notifications ({{unreadCount}})</span>
         </button>

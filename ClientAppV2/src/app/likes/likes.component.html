@@ -1,0 +1,33 @@
+<div class="vh-100">
+  <div class="text-center mt-3 padding-class">
+    <h2 style="color: blueviolet">{{predicate === 'liked' ? 'Members I like' : 'Members who like me'}}</h2>
+  </div>
+
+  <div class="container mt-3">
+    <div class="d-flex">
+      <mat-button-toggle-group name="predicate" [(ngModel)]="predicate" (change)="loadLikes()">
+        <mat-button-toggle value="liked" class="me-2">
+          <mat-icon>thumb_up</mat-icon> Members I like
+        </mat-button-toggle>
+        <mat-button-toggle value="likedBy" class="me-3">
+          <mat-icon>thumb_up_off_alt</mat-icon> Members who like me
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col-2" *ngFor="let member of members">
+        <!-- member card -->
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-center" *ngIf="pagination">
+    <mat-paginator [length]="pagination.totalItems"
+                   [pageSize]="pagination.itemsPerPage"
+                   [pageSizeOptions]="[5, 10, 25, 100]"
+                   [pageIndex]="pageNumber - 1"
+                   (page)="pageChanged($event.pageIndex + 1)">
+    </mat-paginator>
+  </div>
+</div>

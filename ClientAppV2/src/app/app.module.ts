@@ -8,10 +8,13 @@ import { SharedModule } from './shared/shared.module';
 import {HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { CoreModule } from './core/core.module';
 import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
+import { LikesComponent } from './likes/likes.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LikesComponent
   ],
   imports: [
     HttpClientModule,
@@ -19,7 +22,8 @@ import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
     AppRoutingModule,
     BrowserAnimationsModule,
     SharedModule,
-    CoreModule
+    CoreModule,
+    FormsModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
