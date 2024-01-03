@@ -14,6 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { NotificationComponent } from './notification/notification.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ConfirmDialogComponent } from './modals/confirm-dialog/confirm-dialog.component';
+import { RatingComponent } from './rating/rating.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ConfirmDialogComponent } from './modals/confirm-dialog/confirm-dialog.c
     NavBarComponent,
     RolesModalComponent,
     NotificationComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    RatingComponent
   ],
   imports: [
     ToastrModule.forRoot(
@@ -43,6 +45,7 @@ import { ConfirmDialogComponent } from './modals/confirm-dialog/confirm-dialog.c
     NgxSpinnerModule,
   ],
   exports: [
+    RatingComponent,
     NavBarComponent,
     HasRoleDirective,
     RolesModalComponent,
