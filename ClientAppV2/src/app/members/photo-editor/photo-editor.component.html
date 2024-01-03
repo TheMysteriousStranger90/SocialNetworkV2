@@ -1,0 +1,58 @@
+<div fxLayout="row wrap" *ngIf="member">
+  <div fxFlex="100" fxFlex.gt-sm="33" *ngFor="let photo of member.photos">
+    <mat-card>
+      <img mat-card-image [src]="photo.url" alt="photo of user">
+      <mat-card-content *ngIf="!photo.isApproved">
+        <p class="text-danger">Awaiting approval</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button color="primary" [disabled]="photo.isMain || !photo.isApproved" (click)="setMainPhoto(photo)">Main</button>
+        <button mat-button color="warn" [disabled]="photo.isMain" (click)="deletePhoto(photo.id)">Remove</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
+
+<div fxLayout="row wrap">
+  <div fxFlex="100" fxFlex.gt-sm="33">
+    <h3>Add Photos</h3>
+
+    <div ng2FileDrop (fileOver)="fileOverBase($event)" [uploader]="uploader" class="my-drop-zone">
+      <mat-icon>cloud_upload</mat-icon>
+      Drop photos here
+    </div>
+
+    Multiple
+    <input type="file" ng2FileSelect [uploader]="uploader" multiple  /><br/>
+
+    Single
+    <input type="file" ng2FileSelect [uploader]="uploader" />
+  </div>
+
+  <div fxFlex="100" fxFlex.gt-sm="67" *ngIf="uploader?.queue?.length">
+    <h3>Upload queue</h3>
+    <p>Queue length: {{ uploader?.queue?.length }}</p>
+
+    <mat-table #table [dataSource]="uploader?.queue || []">
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+        <mat-cell *matCellDef="let item"> {{item?.file?.name}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="size">
+        <mat-header-cell *matHeaderCellDef> Size </mat-header-cell>
+        <mat-cell *matCellDef="let item"> {{item?.file?.size/1024/1024 | number:'.2'}} MB </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="['name', 'size']"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: ['name', 'size'];"></mat-row>
+    </mat-table>
+
+    <div>
+      <mat-progress-bar mode="determinate" [value]="uploader?.progress"></mat-progress-bar>
+      <button mat-raised-button color="primary" (click)="uploader?.uploadAll()" [disabled]="!uploader?.getNotUploadedItems()?.length">Upload all</button>
+      <button mat-raised-button color="accent" (click)="uploader?.cancelAll()" [disabled]="!uploader?.isUploading">Cancel all</button>
+      <button mat-raised-button color="warn" (click)="uploader?.clearQueue()" [disabled]="!uploader?.queue?.length">Remove all</button>
+    </div>
+  </div>
+</div>

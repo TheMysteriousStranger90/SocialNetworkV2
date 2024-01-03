@@ -12,13 +12,16 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import { NotificationComponent } from './notification/notification.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { ConfirmDialogComponent } from './modals/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
     HasRoleDirective,
     NavBarComponent,
     RolesModalComponent,
-    NotificationComponent
+    NotificationComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     ToastrModule.forRoot(
@@ -36,17 +39,15 @@ import { NotificationComponent } from './notification/notification.component';
     MatCheckboxModule,
     MatFormFieldModule,
     MatDialogModule,
-    FormsModule
+    FormsModule,
+    NgxSpinnerModule,
   ],
   exports: [
     NavBarComponent,
     HasRoleDirective,
     RolesModalComponent,
-
-
-
-    
-
+    NgxSpinnerModule,
+    ConfirmDialogComponent
   ]
 })
 export class CoreModule { }

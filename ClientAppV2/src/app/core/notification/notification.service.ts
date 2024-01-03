@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Notification } from 'src/app/shared/models/notification';
+import { Photo } from 'src/app/shared/models/photo';
 @Injectable({
   providedIn: 'root'
 })
@@ -32,5 +33,9 @@ export class NotificationService {
 
   markAllAsRead(userName: string) {
     return this.http.put(this.baseUrl + 'notifications/' + userName + '/read-all', {});
+  }
+
+  createPhotoNotification(photo: Photo) {
+    return this.http.post(this.baseUrl + 'notifications/photo-notification/' + photo.id, photo);
   }
 }

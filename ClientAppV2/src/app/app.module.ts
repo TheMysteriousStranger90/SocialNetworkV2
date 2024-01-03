@@ -10,11 +10,20 @@ import { CoreModule } from './core/core.module';
 import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
 import { LikesComponent } from './likes/likes.component';
 import { FormsModule } from '@angular/forms';
+import { FollowComponent } from './follow/follow.component';
+import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
+import { FileUploadModule } from 'ng2-file-upload';
+import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
+import { MessagesComponent } from './messages/messages.component';
+import { TimeagoModule } from 'ngx-timeago';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LikesComponent
+    LikesComponent,
+    FollowComponent,
+    PhotoEditorComponent,
+    MessagesComponent
   ],
   imports: [
     HttpClientModule,
@@ -23,10 +32,13 @@ import { FormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     SharedModule,
     CoreModule,
-    FormsModule
+    FormsModule,
+    FileUploadModule,
+    TimeagoModule.forRoot()
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true},
   ],
   bootstrap: [AppComponent]
 })

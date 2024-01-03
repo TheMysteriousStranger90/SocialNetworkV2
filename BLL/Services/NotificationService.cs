@@ -55,9 +55,9 @@ public class NotificationService : INotificationService
         return _mapper.Map<IEnumerable<NotificationDto>>(notifications);
     }
 
-    public async Task CreatePhotoToAlbumNotificationAsync(int albumId, PhotoDto photoDto)
+    public async Task CreatePhotoToAlbumNotificationAsync(PhotoDto photoDto)
     {
         var photo = _mapper.Map<Photo>(photoDto);
-        await _unitOfWork.NotificationRepository.CreatePhotoToAlbumNotificationAsync(albumId, photo);
+        await _unitOfWork.NotificationRepository.CreatePhotoToAlbumNotificationAsync(photo);
     }
 }

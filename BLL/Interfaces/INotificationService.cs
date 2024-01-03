@@ -9,5 +9,5 @@ public interface INotificationService
     Task MarkAsReadAllAsync(string userName);
     Task<IEnumerable<NotificationDto>> GetNotificationsByUserIdAsync(string userName);
     Task<IEnumerable<NotificationDto>> GetUnreadNotificationsByUserIdAsync(string userName);
-    Task CreatePhotoToAlbumNotificationAsync(int albumId, PhotoDto photoDto);
+    Task CreatePhotoToAlbumNotificationAsync(PhotoDto photoDto);
 }

@@ -4,6 +4,8 @@ import { authGuard } from './core/guards/auth.guard';
 import { adminGuard } from './core/guards/admin.guard';
 import { LikesComponent } from './likes/likes.component';
 import { NotificationComponent } from './core/notification/notification.component';
+import { FollowComponent } from './follow/follow.component';
+import { MessagesComponent } from './messages/messages.component';
 
 const routes: Routes = [
 
@@ -15,6 +17,8 @@ const routes: Routes = [
       {path: 'likes', component: LikesComponent},
 
       {path: 'notification', component: NotificationComponent},
+      {path: 'follow', component: FollowComponent},
+      {path: 'messages', component: MessagesComponent},
       {
         path: 'admin', canActivate: [adminGuard],
         loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule), data: {breadcrumb: {skip: true}}

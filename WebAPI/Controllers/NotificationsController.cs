@@ -88,12 +88,12 @@ public class NotificationsController : BaseApiController
         }
     }
 
-    [HttpPost("photo-notification/{albumId}")]
-    public async Task<ActionResult> CreatePhotoToAlbumNotification(int albumId, [FromBody] PhotoDto photoDto)
+    [HttpPost("photo-notification/{photoId}")]
+    public async Task<ActionResult> CreatePhotoNotification([FromBody] PhotoDto photoDto)
     {
         try
         {
-            await _notificationService.CreatePhotoToAlbumNotificationAsync(albumId, photoDto);
+            await _notificationService.CreatePhotoToAlbumNotificationAsync(photoDto);
             return Ok();
         }
         catch (Exception ex)

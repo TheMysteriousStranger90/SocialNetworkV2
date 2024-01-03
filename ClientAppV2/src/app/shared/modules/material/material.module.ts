@@ -18,7 +18,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatListModule} from '@angular/material/list';
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {MatPaginatorModule} from "@angular/material/paginator";
-
+import { MatTableModule } from '@angular/material/table';
 @NgModule({
   declarations: [],
   imports: [
@@ -41,7 +41,8 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     MatSnackBarModule,
     MatListModule,
     MatButtonToggleModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatTableModule,
   ],
   exports: [
     MatFormFieldModule,
@@ -62,7 +63,8 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     MatSnackBarModule,
     MatListModule,
     MatButtonToggleModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatTableModule,
   ]
 })
 
