@@ -16,6 +16,7 @@ import { FileUploadModule } from 'ng2-file-upload';
 import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
 import { MessagesComponent } from './messages/messages.component';
 import { TimeagoModule } from 'ngx-timeago';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { TimeagoModule } from 'ngx-timeago';
     LikesComponent,
     FollowComponent,
     PhotoEditorComponent,
-    MessagesComponent
+    MessagesComponent,
+    HomeComponent
   ],
   imports: [
     HttpClientModule,
