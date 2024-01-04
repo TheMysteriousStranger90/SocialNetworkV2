@@ -7,6 +7,7 @@ import { NotificationComponent } from './core/notification/notification.componen
 import { FollowComponent } from './follow/follow.component';
 import { MessagesComponent } from './messages/messages.component';
 import { HomeComponent } from './home/home.component';
+import { MemberListComponent } from './members/member-list/member-list.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent, data: {breadcrumb: 'Home'}},
@@ -15,6 +16,7 @@ const routes: Routes = [
     runGuardsAndResolvers: 'always',
     canActivate: [authGuard],
     children: [
+      {path: 'members', component: MemberListComponent},
       {path: 'likes', component: LikesComponent},
       {path: 'notification', component: NotificationComponent},
       {path: 'follow', component: FollowComponent},

@@ -1,0 +1,27 @@
+.mat-paginator {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+button {
+  background-color: #9f7aea;
+  color: #3a3a3a;
+  margin-right: 10px;
+}
+
+.spacing {
+  margin-right: 10px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 20px;
+}
+
+.col-2 {
+  flex: 0 0 auto;
+  width: 20%;
+  margin-right: 10px;
+}

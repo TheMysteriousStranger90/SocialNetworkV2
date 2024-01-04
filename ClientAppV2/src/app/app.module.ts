@@ -17,6 +17,8 @@ import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
 import { MessagesComponent } from './messages/messages.component';
 import { TimeagoModule } from 'ngx-timeago';
 import { HomeComponent } from './home/home.component';
+import { MemberCardComponent } from './members/member-card/member-card.component';
+import { MemberListComponent } from './members/member-list/member-list.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { HomeComponent } from './home/home.component';
     FollowComponent,
     PhotoEditorComponent,
     MessagesComponent,
-    HomeComponent
+    HomeComponent,
+    MemberCardComponent,
+    MemberListComponent
   ],
   imports: [
     HttpClientModule,

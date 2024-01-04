@@ -123,6 +123,11 @@ public class UserRepository : IUserRepository
 
         query = query.Where(u => u.DateOfBirth >= minDob && u.DateOfBirth <= maxDob);
 
+        if (!string.IsNullOrEmpty(userParams.Search))
+        {
+            query = query.Where(u => u.LastName.Contains(userParams.Search));
+        }
+
         query = userParams.OrderBy switch
         {
             "created" => query.OrderByDescending(u => u.Created),

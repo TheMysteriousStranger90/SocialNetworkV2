@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { User } from '../shared/models/user';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { AccountService } from '../account/account.service';
 import {map, Observable, of, switchMap, take} from 'rxjs';
 import { UserParams } from '../shared/models/userParams';
@@ -34,12 +34,6 @@ export class MembersService {
   }
 
   getMember(username: string) {
-    /*
-    const member = this.members.find(x => x.userName === userName)
-    if (member !== undefined) return of(member);
-    return this.http.get<Member>(this.baseUrl + 'users/' + userName);
-    */
-
     const member = [...this.memberCache.values()]
       .reduce((arr, elem) => arr.concat(elem.result), [])
       .find((member: Member) => member.userName === username);
@@ -47,6 +41,31 @@ export class MembersService {
     if (member) return of(member);
 
     return this.http.get<Member>(this.baseUrl + 'users/' + username);
+  }
+
+  getMembers(userParams: UserParams) {
+    const response = this.memberCache.get(Object.values(userParams).join('-'));
+
+    if (response) return of(response);
+
+    let params = new HttpParams();
+    params = params.append('pageIndex', userParams.pageNumber);
+    params = params.append('pageSize', userParams.pageSize);
+    params = params.append('minAge', userParams.minAge);
+    params = params.append('maxAge', userParams.maxAge);
+    params = params.append('gender', userParams.gender);
+    params = params.append('orderBy', userParams.orderBy);
+    if (userParams.search && userParams.search.trim() !== '') {
+      params = params.append('search', userParams.search);
+    }
+    params = params.append('currentUsername', this.user?.username || '');
+
+    return getPaginatedResult<Member[]>(this.baseUrl + 'users', params, this.http).pipe(
+      map(response => {
+        this.memberCache.set(Object.values(userParams).join('-'), response);
+        return response;
+      })
+    )
   }
 
 

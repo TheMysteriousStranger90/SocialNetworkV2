@@ -5,8 +5,7 @@ namespace DAL.Specifications;
 public class AppUserSpecification : BaseSpecification<AppUser>
 {
     public AppUserSpecification(UserParams userParams, bool includeSpecialization = false) 
-        : base(a => (string.IsNullOrEmpty(userParams.Search) || a.LastName.ToLower().Contains(userParams.Search)) &&
-                    (!userParams.SpecializationId.HasValue || a.SpecializationId == userParams.SpecializationId))
+        : base(a => (string.IsNullOrEmpty(userParams.Search) || a.LastName.ToLower().Contains(userParams.Search)))
     {
         if (includeSpecialization)
         {
