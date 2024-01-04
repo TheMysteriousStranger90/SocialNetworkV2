@@ -24,34 +24,36 @@ public class LikeService : ILikeService
     public async Task AddLike(string userName, int sourceUserId)
     {
         var likedUser = await _unitOfWork.UserRepository.GetUserByUsernameAsync(userName);
-        var sourceUser = await _unitOfWork.LikesRepository.GetUserWithLikes(sourceUserId);
+        var sourceUser = await _unitOfWork.UserLikeRepository.GetUserWithLikes(sourceUserId);
 
-        if (likedUser == null) throw new SocialNetworkException("Not Found");
+        if (likedUser == null) throw new SocialNetworkException("User Not Found");
+        if (sourceUser == null) throw new SocialNetworkException("Source User Not Found");
 
         if (sourceUser.UserName == userName) throw new SocialNetworkException("You cannot like yourself");
 
-        var userLike = await _unitOfWork.LikesRepository.GetUserLike(sourceUserId, likedUser.Id);
+        var userLike = await _unitOfWork.UserLikeRepository.GetUserLike(sourceUserId, likedUser.Id);
 
         if (userLike != null) throw new SocialNetworkException("You already like this user");
 
         userLike = new UserLike
         {
             SourceUserId = sourceUserId,
-            TargetUserId = likedUser.Id
+            TargetUserId = likedUser.Id,
+            IsLike = true
         };
 
         sourceUser.LikedUsers.Add(userLike);
-        
+    
         await _unitOfWork.SaveAsync();
     }
 
     public async Task<Pagination<LikeDto>> GetUserLikes(LikesParams likesParams)
     {
-        var users = _unitOfWork.LikesRepository.GetUserLikes(likesParams);
+        var users = _unitOfWork.UserLikeRepository.GetUserLikes(likesParams);
         
         var likedUsers = users.Select(user => new LikeDto
         {
-            Username = user.UserName,
+            UserName = user.UserName,
             Age = user.DateOfBirth.CalcuateAge(),
             PhotoUrl = user.Photos.FirstOrDefault(x => x.IsMain).Url,
             City = user.City,

@@ -15,11 +15,15 @@
   }
 
   .row {
-    // Your styles for the row
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px;
   }
 
   .col-2 {
-    // Your styles for the column
+    flex: 0 0 auto;
+    width: 20%;
+    margin-right: 10px;
   }
 }
 

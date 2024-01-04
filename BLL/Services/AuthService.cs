@@ -49,14 +49,14 @@ public class AuthService : IAuthService
 
     public async Task<AppUserDto> RegisterAsync(RegisterDto registerDto)
     {
-        if (await CheckUserNameExistsAsync(registerDto.Username)) throw new SocialNetworkException("UserName is taken");
+        if (await CheckUserNameExistsAsync(registerDto.UserName)) throw new SocialNetworkException("UserName is taken");
         if (await CheckEmailExistsAsync(registerDto.Email)) throw new SocialNetworkException("Email is taken");
 
         var user = _mapper.Map<AppUser>(registerDto);
         
         user.SpecializationId = 1;
         user.ProfileVisibility = true;
-        user.UserName = registerDto.Username.ToLower();
+        user.UserName = registerDto.UserName.ToLower();
 
         var result = await _unitOfWork.UserManager.CreateAsync(user, registerDto.Password);
 

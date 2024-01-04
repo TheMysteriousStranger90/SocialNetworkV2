@@ -30,6 +30,12 @@ public static class ApplicationServicesExtensions
             return ConnectionMultiplexer.Connect(options);
         });
         
+        services.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings"));
+        
+        services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+        
+        services.AddAutoMapper(typeof(AutoMapperProfile));
+        
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         
         services.AddScoped<ITokenService, TokenService>();
@@ -45,11 +51,6 @@ public static class ApplicationServicesExtensions
         services.AddScoped<IFollowService, FollowService>();
         services.AddScoped<INotificationService, NotificationService>();
         services.AddScoped<IUserFriendsService, UserFriendsService>();
-        
-        services.AddAutoMapper(typeof(AutoMapperProfile));
-        
-        services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-        services.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings"));
         
         services.AddSignalR();
         services.AddSingleton<PresenceTracker>();

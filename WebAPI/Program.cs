@@ -23,18 +23,9 @@ builder.Services.AddEndpointsApiExplorer();
 
 var app = builder.Build();
 
-app.UseSwaggerDocumentation();
-
 app.UseMiddleware<ExceptionMiddleware>();
-
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
-app.UseHttpsRedirection();
+app.UseSwaggerDocumentation();
 
 app.UseCors(builder => builder
     .AllowAnyHeader()

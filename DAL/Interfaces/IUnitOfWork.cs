@@ -3,12 +3,11 @@ using Microsoft.AspNetCore.Identity;
 
 namespace DAL.Interfaces;
 
-public interface IUnitOfWork
+public interface IUnitOfWork : IDisposable
 {
     IGenericRepository<T> Repository<T>() where T : class;
     IUserRepository UserRepository { get; }
     IMessageRepository MessageRepository { get; }
-    ILikesRepository LikesRepository { get; }
     IPhotoRepository PhotoRepository { get; }
     IRatingRepository RatingRepository { get; }
     IEventRepository EventRepository { get; }

@@ -18,8 +18,9 @@
       <span [class.is-online]="(presenceService.onlineUsers$ | async)?.includes(member.userName)">
         <mat-icon>person</mat-icon>
       </span>
-      {{member.userName}}, {{member.age}}
+        {{member.userName}}
     </h6>
+    <p class="text-muted text-center">{{member.firstName}} {{member.lastName}}, {{member.age}}</p>
     <p class="text-muted text-center">{{member.city}}</p>
   </mat-card-content>
 </mat-card>

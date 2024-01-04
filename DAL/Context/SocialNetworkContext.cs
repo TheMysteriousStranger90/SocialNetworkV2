@@ -19,7 +19,7 @@ public class SocialNetworkContext : IdentityDbContext<AppUser, AppRole, int,
     public DbSet<Group> Groups { get; set; }
     public DbSet<Connection> Connections { get; set; }
     public DbSet<Specialization> Specializations { get; set; }
-    public DbSet<UserFriends> UsersFriends { get; set; }
+    public DbSet<UserFriends> UserFriends { get; set; }
     public DbSet<Rating> Ratings { get; set; }
     public DbSet<Photo> Photos { get; set; }
     public DbSet<Event> Events { get; set; }
@@ -27,7 +27,6 @@ public class SocialNetworkContext : IdentityDbContext<AppUser, AppRole, int,
     public DbSet<FeedItem> FeedItems { get; set; }
     public DbSet<Follow> Follows { get; set; }
     public DbSet<Notification> Notifications { get; set; }
-    public DbSet<UserFriends> UserFriends { get; set; }
     public DbSet<UserBlock> UserBlocks { get; set; }
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -13,7 +13,6 @@ public class UnitOfWork : IUnitOfWork, IDisposable
     private Hashtable _repositories;
     private IUserRepository _userRepository;
     private IMessageRepository _messageRepository;
-    private ILikesRepository _likesRepository;
     private IPhotoRepository _photoRepository;
     private ISpecializationRepository _specializationRepository;
     private IRatingRepository _ratingRepository;
@@ -54,23 +53,24 @@ public class UnitOfWork : IUnitOfWork, IDisposable
 
     public IMessageRepository MessageRepository => _messageRepository ??= new MessageRepository(_context);
 
-    public ILikesRepository LikesRepository => _likesRepository ??= new LikesRepository(_context);
-
     public IPhotoRepository PhotoRepository => _photoRepository ??= new PhotoRepository(_context);
 
     public IRatingRepository RatingRepository => _ratingRepository ??= new RatingRepository(_context);
-    
-    public ISpecializationRepository SpecializationRepository => _specializationRepository ??= new SpecializationRepository(_context);
-    
+
+    public ISpecializationRepository SpecializationRepository =>
+        _specializationRepository ??= new SpecializationRepository(_context);
+
     public IEventRepository EventRepository => _eventRepository ??= new EventRepository(_context);
 
     public IFeedItemRepository FeedItemRepository => _feedItemRepository ??= new FeedItemRepository(_context);
 
     public IFollowRepository FollowRepository => _followRepository ??= new FollowRepository(_context);
 
-    public INotificationRepository NotificationRepository => _notificationRepository ??= new NotificationRepository(_context);
+    public INotificationRepository NotificationRepository =>
+        _notificationRepository ??= new NotificationRepository(_context);
 
-    public IUserFriendsRepository UserFriendsRepository => _userFriendsRepository ??= new UserFriendsRepository(_context);
+    public IUserFriendsRepository UserFriendsRepository =>
+        _userFriendsRepository ??= new UserFriendsRepository(_context);
 
     public IUserLikeRepository UserLikeRepository => _userLikeRepository ??= new UserLikeRepository(_context);
 

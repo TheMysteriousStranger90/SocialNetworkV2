@@ -1,6 +1,6 @@
 [
   {
-    "UserName": "Jeanne",
+    "UserName": "jeanne",
     "FirstName": "Jeanne",
     "LastName": "Moreau",
     "Email": "jeanne.moreau@outlook.com",
@@ -14,6 +14,7 @@
     "Education": "Education1",
     "RelationshipStatus": "Married",
     "Work": "Work1",
+    "ProfileVisibility": true,
     "Introduction": "Cillum elit nostrud enim laboris pariatur labore ipsum ut. Quis elit irure sint velit laboris anim Lorem laboris. Labore reprehenderit magna officia aliquip pariatur ea id id commodo. Culpa duis non ex nisi. Deserunt pariatur aliqua consequat reprehenderit sunt ex exercitation.\r\n",
     "LookingFor": "Dolor est cupidatat dolor cupidatat cillum amet veniam eiusmod aliqua adipisicing aliquip proident adipisicing. Non nulla ex nisi magna ut cillum Lorem ad. Fugiat nulla laboris consequat excepteur ut est veniam voluptate ut officia anim reprehenderit proident sunt. Do proident laboris consequat laboris cillum minim reprehenderit velit.\r\n",
     "Interests": "Duis in est laboris anim pariatur incididunt mollit laboris ea velit aliquip cillum.",
@@ -28,7 +29,7 @@
     ]
   },
   {
-    "UserName": "Sarah",
+    "UserName": "sarah",
     "FirstName": "Sarah",
     "LastName": "Connolly",
     "Email": "sarah.connolly@outlook.com",
@@ -42,6 +43,7 @@
     "Education": "Education1",
     "RelationshipStatus": "Married",
     "Work": "Work1",
+    "ProfileVisibility": true,
     "Introduction": "Qui ipsum voluptate exercitation officia nisi velit adipisicing exercitation sint nulla do. Qui fugiat non nisi excepteur et duis elit consectetur ullamco velit fugiat. Sit do esse cupidatat quis eiusmod cupidatat.\r\n",
     "LookingFor": "Est quis dolore duis excepteur exercitation reprehenderit ipsum elit aliquip dolor nostrud. Sint incididunt sunt deserunt pariatur pariatur minim velit voluptate consequat amet qui. Sit cillum ullamco culpa deserunt commodo culpa ad anim. Do aliqua aute proident eiusmod esse veniam ipsum nisi anim veniam ut aliquip incididunt culpa.\r\n",
     "Interests": "Elit Lorem aliquip deserunt cupidatat ex aliquip ullamco.",
@@ -56,7 +58,7 @@
     ]
   },
   {
-    "UserName": "Malcolm",
+    "UserName": "malcolm",
     "FirstName": "Malcolm",
     "LastName": "Arnold",
     "Email": "malcolm.arnold@outlook.com",
@@ -70,6 +72,7 @@
     "Education": "Education1",
     "RelationshipStatus": "Single",
     "Work": "Work1",
+    "ProfileVisibility": true,
     "Introduction": "Mollit elit cillum dolore ea laboris consequat excepteur eiusmod eiusmod qui magna mollit occaecat. Sint qui ut veniam non. Est non veniam magna in consectetur ullamco eiusmod in elit aute ea ipsum aliquip. Duis nisi do dolore ad. Consectetur incididunt quis exercitation aliquip officia. Ex anim pariatur veniam fugiat aute consequat quis nisi in quis.\r\n",
     "LookingFor": "Magna ex non ullamco ipsum commodo minim cupidatat sit. Sint dolor enim amet cupidatat. Anim et ea officia ea officia veniam adipisicing tempor. Labore consequat in duis deserunt tempor aliqua. Eu incididunt id deserunt proident ullamco aliqua culpa officia anim deserunt fugiat amet voluptate qui. In id non sint sint aliqua commodo reprehenderit excepteur cillum Lorem minim.\r\n",
     "Interests": "Esse cillum deserunt fugiat deserunt irure ea esse deserunt quis exercitation velit do nisi reprehenderit.",

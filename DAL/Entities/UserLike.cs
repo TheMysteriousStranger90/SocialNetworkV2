@@ -2,7 +2,7 @@
 
 namespace DAL.Entities;
 
-public class UserLike : BaseEntity
+public class UserLike
 {
     public bool IsLike { get; set; }
     [ForeignKey("SourceUserId")] public AppUser SourceUser { get; set; }
