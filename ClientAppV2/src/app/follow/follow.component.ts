@@ -21,4 +21,13 @@ export class FollowComponent implements OnInit {
       error: err => console.error(err)
     });
   }
+
+  unfollowUser(username: string) {
+    this.membersService.unfollowUser(username).subscribe({
+      next: () => {
+        this.loadFollowed();
+      },
+      error: err => console.error(err)
+    });
+  }
 }

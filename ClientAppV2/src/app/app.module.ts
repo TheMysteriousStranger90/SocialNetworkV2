@@ -19,6 +19,7 @@ import { TimeagoModule } from 'ngx-timeago';
 import { HomeComponent } from './home/home.component';
 import { MemberCardComponent } from './members/member-card/member-card.component';
 import { MemberListComponent } from './members/member-list/member-list.component';
+import { MemberMessagesComponent } from './members/member-messages/member-messages.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { MemberListComponent } from './members/member-list/member-list.component
     MessagesComponent,
     HomeComponent,
     MemberCardComponent,
-    MemberListComponent
+    MemberListComponent,
+    MemberMessagesComponent
   ],
   imports: [
     HttpClientModule,

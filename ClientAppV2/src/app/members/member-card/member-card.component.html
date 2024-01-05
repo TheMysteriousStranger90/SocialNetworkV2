@@ -8,6 +8,9 @@
       <button mat-icon-button (click)="addLike(member)">
         <mat-icon>favorite</mat-icon>
       </button>
+      <button mat-icon-button (click)="addFollow(member)">
+        <mat-icon>group_add</mat-icon>
+      </button>
       <button mat-icon-button routerLink="/members/{{member.userName}}" [queryParams]="{tab: 'Messages'}">
         <mat-icon>send</mat-icon>
       </button>

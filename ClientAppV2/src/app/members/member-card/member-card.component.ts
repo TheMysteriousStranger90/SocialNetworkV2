@@ -28,4 +28,14 @@ export class MemberCardComponent implements OnInit {
       console.error('Username is not defined');
     }
   }
+
+  addFollow(member: Member) {
+    if (member && member.userName) {
+      this.memberService.followUser(member.userName).subscribe({
+        next: () => this.toastr.success('You have followed ' + member.userName)
+      })
+    } else {
+      console.error('Username is not defined');
+    }
+  }
 }

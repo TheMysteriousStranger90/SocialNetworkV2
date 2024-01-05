@@ -1,0 +1,49 @@
+<mat-card>
+  <mat-card-content>
+    <div *ngIf="(messageService.messageThread$ | async)?.length === 0">
+      No messages yet... say hi by using the message box below
+    </div>
+
+    <mat-list
+      #scrollMe
+      style="overflow: auto; height: 550px"
+      *ngIf="(messageService.messageThread$ | async)!.length > 0" class="chat">
+      <mat-list-item *ngFor="let message of (messageService.messageThread$ | async)">
+        <div>
+          <span class="chat-img float-end me-2">
+            <img mat-card-avatar class="rounded-circle"
+                 src="{{message.senderPhotoUrl || './assets/user.png'}}"
+                 alt="image of user">
+          </span>
+          <div class="chat-body">
+            <div class="header">
+              <small class="text-muted">
+                <span class="fa fa-clock-o">{{message.messageSent | timeago}}</span>
+                <span class="text-danger" *ngIf="!message.dateRead
+                                    && message.senderUsername !== username"> (unread)</span>
+                <span class="text-success" *ngIf="message.dateRead
+                                    && message.senderUsername !== username"> (read {{message.dateRead | timeago}})</span>
+              </small>
+            </div>
+            <p>{{message.content}}</p>
+          </div>
+        </div>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <form #messageForm="ngForm" (ngSubmit)="sendMessage()" autocomplete="off">
+      <mat-form-field class="input-group me-2">
+        <input matInput
+               name="messageContent"
+               required
+               [(ngModel)]="messageContent"
+               type="text"
+               class="form-control input-sm me-2"
+               placeholder="Send a private message">
+      </mat-form-field>
+      <button mat-raised-button color="primary" [disabled]="!messageForm.valid" class="btn btn-primary me-2" type="submit">Send</button>
+    </form>
+  </mat-card-actions>
+</mat-card>

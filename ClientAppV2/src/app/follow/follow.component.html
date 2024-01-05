@@ -1,7 +1,30 @@
-<div *ngIf="followedUsers">
-  <mat-list>
-    <mat-list-item *ngFor="let user of followedUsers">
-      {{ user.username }}
-    </mat-list-item>
-  </mat-list>
+<div class="vh-100">
+  <div class="container">
+    <div class="row">
+      <div class="col-4 col-md-8 col-lg-6 col-xl-5">
+        <mat-card>
+          <mat-card-content>
+            <h2>Followed Users</h2>
+
+            <table class="table">
+              <thead>
+              <tr>
+                <th style="width: 20%;">Username</th>
+                <th style="width: 30%;"></th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let user of followedUsers">
+                <td>{{user.username}}</td>
+                <td>
+                  <button (click)="unfollowUser(user.username)" class="btn btn-info">Unfollow</button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
 </div>

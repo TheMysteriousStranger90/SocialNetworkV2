@@ -22,9 +22,16 @@ public class LikesController : BaseApiController
     [HttpPost("{username}")]
     public async Task<ActionResult> AddLike(string userName)
     {
-        var sourceUserId = User.GetUserId();
-        await _likeService.AddLike(userName, sourceUserId);
-        return Ok();
+        try
+        {
+            var sourceUserId = User.GetUserId();
+            await _likeService.AddLike(userName, sourceUserId);
+            return Ok();
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 
     [HttpGet]
