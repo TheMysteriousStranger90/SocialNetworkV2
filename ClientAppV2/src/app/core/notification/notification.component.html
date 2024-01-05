@@ -1,16 +1,33 @@
-<div class="container">
-  <h1>Notifications</h1>
-  <mat-list>
-    <mat-list-item *ngFor="let notification of notifications">
-      <div matLine>
-        {{notification.content}}
+<div class="vh-100">
+  <div class="container">
+    <div class="row">
+      <div class="col-4 col-md-8 col-lg-6 col-xl-5">
+        <mat-card>
+          <mat-card-content>
+            <h2>Notifications</h2>
+            <table class="table">
+              <thead>
+              <tr>
+                <th style="width: 70%;">Content</th>
+                <th style="width: 20%;">Date</th>
+                <th style="width: 10%;"></th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let notification of notifications">
+                <td>{{notification.content}}</td>
+                <td>{{notification.createdAt | date}}</td>
+                <td>
+                  <button mat-icon-button color="primary" *ngIf="!notification.isRead" (click)="markAsRead(notification)">
+                    <mat-icon>done</mat-icon>
+                  </button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </mat-card-content>
+        </mat-card>
       </div>
-      <div matLine>
-        {{notification.createdAt | date}}
-      </div>
-      <button mat-icon-button color="primary" *ngIf="!notification.isRead" (click)="markAsRead(notification)">
-        <mat-icon>done</mat-icon>
-      </button>
-    </mat-list-item>
-  </mat-list>
+    </div>
+  </div>
 </div>

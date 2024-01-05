@@ -1,18 +1,23 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
-import { Notification } from 'src/app/shared/models/notification';
-import { Photo } from 'src/app/shared/models/photo';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {environment} from 'src/environments/environment';
+import {Notification} from 'src/app/shared/models/notification';
+import {Photo} from 'src/app/shared/models/photo';
+import {map} from 'rxjs';
+
 @Injectable({
   providedIn: 'root'
 })
 export class NotificationService {
   baseUrl = environment.apiUrl;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   getUnreadCount(userName: string) {
-    return this.http.get<number>(this.baseUrl + 'notifications/' + userName + '/unread-count');
+    return this.http.get<Notification[]>(this.baseUrl + 'notifications/' + userName + '/unread').pipe(
+      map(notifications => notifications.length)
+    );
   }
 
   getNotifications(userName: string) {
@@ -24,7 +29,7 @@ export class NotificationService {
   }
 
   sendNotification(userName: string, content: string) {
-    return this.http.post(this.baseUrl + 'notifications/' + userName, { content });
+    return this.http.post(this.baseUrl + 'notifications/' + userName, {content});
   }
 
   markAsRead(userName: string, notificationId: number) {
