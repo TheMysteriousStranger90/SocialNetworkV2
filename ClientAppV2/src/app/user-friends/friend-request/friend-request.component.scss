@@ -1,0 +1,44 @@
+.vh-100 {
+  height: 100%;
+  background-color: #3a3a3a;
+  font-family: 'Berlin Sans FB';
+  max-width: 600px;
+  margin: 60px auto;
+  padding: 80px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.container {
+  .row {
+    .col-4, .col-md-8, .col-lg-6, .col-xl-5 {
+      mat-card {
+        background-color: #3a3a3a;
+
+        mat-card-content {
+          color: #9f7aea;
+
+          h2 {
+            color: #9f7aea;
+          }
+
+          p {
+            color: #9f7aea;
+          }
+
+          mat-form-field {
+            mat-label {
+              color: #9f7aea;
+            }
+          }
+
+          button {
+            background-color: #9f7aea;
+            color: #3a3a3a;
+            margin: 10px 0;
+          }
+        }
+      }
+    }
+  }
+}

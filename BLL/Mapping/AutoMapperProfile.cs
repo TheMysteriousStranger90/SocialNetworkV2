@@ -54,13 +54,8 @@ public class AutoMapperProfile : Profile
 
         CreateMap<Specialization, SpecializationDto>();
 
-        CreateMap<UserFriends, UserFriendsDto>();
-
-        
-        /*
-        CreateMap<UserLike, LikeDto>()
-            .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.SourceUser.UserName));
-        */
+        CreateMap<UserFriends, UserFriendsDto>()
+            .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.AppUser.UserName));
         
     }
 }

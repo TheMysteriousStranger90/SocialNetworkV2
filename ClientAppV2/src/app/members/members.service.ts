@@ -33,6 +33,8 @@ export class MembersService {
     })
   }
 
+
+
   getMember(username: string) {
     const member = [...this.memberCache.values()]
       .reduce((arr, elem) => arr.concat(elem.result), [])
@@ -69,6 +71,7 @@ export class MembersService {
   }
 
 
+
   addLike(username: string) {
     return this.http.post(this.baseUrl + 'likes/' + username, {});
   }
@@ -78,6 +81,7 @@ export class MembersService {
     params = params.append('predicate', predicate);
     return getPaginatedResult<Member[]>(this.baseUrl + 'likes', params, this.http);
   }
+
 
 
   getFollowed() {
@@ -121,6 +125,7 @@ export class MembersService {
   }
 
 
+
   getUserParams() {
     return this.userParams;
   }
@@ -138,11 +143,72 @@ export class MembersService {
   }
 
 
+
   setMainPhoto(photoId: number) {
     return this.http.put(this.baseUrl + 'users/set-main-photo/' + photoId, {});
   }
 
   deletePhoto(photoId: number) {
     return this.http.delete(this.baseUrl + 'users/delete-photo/' + photoId);
+  }
+
+
+
+
+
+  getFriendsByUserName() {
+    if (this.user) {
+      return this.http.get<Member[]>(this.baseUrl + 'friends/' + this.user.username);
+    } else {
+      return throwError('User is not logged in');
+    }
+  }
+
+  getFriendRequestsByUserName() {
+    if (this.user) {
+      return this.http.get<Member[]>(this.baseUrl + 'friends/' + this.user.username + '/requests');
+    } else {
+      return throwError('User is not logged in');
+    }
+  }
+
+  areUsersFriends(friendName: string) {
+    if (this.user) {
+      return this.http.get<boolean>(this.baseUrl + 'friends/' + this.user.username + '/are-friends/' + friendName);
+    } else {
+      return throwError('User is not logged in');
+    }
+  }
+
+  sendFriendRequest(friendName: string) {
+    if (this.user) {
+      return this.http.post(this.baseUrl + 'friends/' + this.user.username + '/requests/' + friendName, {});
+    } else {
+      return throwError('User is not logged in');
+    }
+  }
+
+  acceptFriendRequest(friendName: string) {
+    if (this.user) {
+      return this.http.put(this.baseUrl + 'friends/' + this.user.username + '/requests/' + friendName + '/accept', {});
+    } else {
+      return throwError('User is not logged in');
+    }
+  }
+
+  rejectFriendRequest(friendName: string) {
+    if (this.user) {
+      return this.http.put(this.baseUrl + 'friends/' + this.user.username + '/requests/' + friendName + '/reject', {});
+    } else {
+      return throwError('User is not logged in');
+    }
+  }
+
+  removeFriend(friendName: string) {
+    if (this.user) {
+      return this.http.delete(this.baseUrl + 'friends/' + this.user.username + '/friends/' + friendName);
+    } else {
+      return throwError('User is not logged in');
+    }
   }
 }

@@ -38,4 +38,15 @@ export class MemberCardComponent implements OnInit {
       console.error('Username is not defined');
     }
   }
+
+  sendFriendRequest(member: Member) {
+    if (member && member.userName) {
+      this.memberService.sendFriendRequest(member.userName).subscribe({
+        next: () => this.toastr.success('Friend request sent to ' + member.userName),
+        error: error => this.toastr.error((error.error && error.error.message) || error.statusText)
+      })
+    } else {
+      console.error('Username is not defined');
+    }
+  }
 }

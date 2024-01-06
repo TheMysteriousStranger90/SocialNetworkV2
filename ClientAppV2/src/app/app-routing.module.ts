@@ -22,6 +22,10 @@ const routes: Routes = [
       {path: 'follow', component: FollowComponent},
       {path: 'messages', component: MessagesComponent},
       {
+        path: 'user-friends',
+        loadChildren: () => import('./user-friends/user-friends.module').then(m => m.UserFriendsModule), data: {breadcrumb: {skip: true}}
+      },
+      {
         path: 'admin', canActivate: [adminGuard],
         loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule), data: {breadcrumb: {skip: true}}
       }

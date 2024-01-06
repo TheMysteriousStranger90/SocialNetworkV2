@@ -14,6 +14,7 @@ public class UserFriendsRepository : GenericRepository<UserFriends>, IUserFriend
     public async Task<IEnumerable<UserFriends>> GetFriendsByUserIdAsync(int userId)
     {
         return await _context.UserFriends
+            .Include(uf => uf.AppUser)
             .Where(uf => uf.AppUserId == userId && uf.IsConfirmed)
             .ToListAsync();
     }
@@ -21,6 +22,7 @@ public class UserFriendsRepository : GenericRepository<UserFriends>, IUserFriend
     public async Task<IEnumerable<UserFriends>> GetFriendRequestsByUserIdAsync(int userId)
     {
         return await _context.UserFriends
+            .Include(uf => uf.AppUser)
             .Where(uf => uf.AppUserFriendId == userId && !uf.IsConfirmed)
             .ToListAsync();
     }

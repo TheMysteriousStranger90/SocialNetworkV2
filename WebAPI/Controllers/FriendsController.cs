@@ -6,11 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 namespace WebAPI.Controllers;
 
 [Authorize]
-public class UserFriendsController : BaseApiController
+public class FriendsController : BaseApiController
 {
     private readonly IUserFriendsService _userFriendsService;
 
-    public UserFriendsController(IUserFriendsService userFriendsService)
+    public FriendsController(IUserFriendsService userFriendsService)
     {
         _userFriendsService = userFriendsService;
     }

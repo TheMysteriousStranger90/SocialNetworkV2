@@ -1,0 +1,35 @@
+<div class="vh-100">
+  <div class="container">
+    <div class="row">
+      <div class="col-4 col-md-8 col-lg-6 col-xl-5">
+        <mat-card>
+          <mat-card-content>
+            <h2>Friends List</h2>
+
+            <table class="table">
+              <thead>
+              <tr>
+                <th style="width: 20%;">Username</th>
+                <th style="width: 30%;"></th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let user of friendsListUsers">
+                <td>{{user.userName}}</td>
+                <td>
+                  <button (click)="removeFriend(user.userName)" class="btn btn-danger">Remove Friend</button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+            <div class="d-grid mb-3">
+              <button mat-raised-button color="primary" routerLink="/user-friends/friend-request" class="py-2">
+                Go to friends requests
+              </button>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
