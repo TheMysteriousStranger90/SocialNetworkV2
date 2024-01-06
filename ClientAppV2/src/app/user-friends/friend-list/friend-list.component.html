@@ -14,10 +14,10 @@
               </tr>
               </thead>
               <tbody>
-              <tr *ngFor="let user of friendsListUsers">
-                <td>{{user.userName}}</td>
+              <tr *ngFor="let friendName of friendsListUsers">
+                <td>{{friendName}}</td>
                 <td>
-                  <button (click)="removeFriend(user.userName)" class="btn btn-danger">Remove Friend</button>
+                  <button (click)="removeFriend(friendName)" class="btn btn-danger">Remove Friend</button>
                 </td>
               </tr>
               </tbody>

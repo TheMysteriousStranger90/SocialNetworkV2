@@ -15,6 +15,7 @@ public class UserFriendsRepository : GenericRepository<UserFriends>, IUserFriend
     {
         return await _context.UserFriends
             .Include(uf => uf.AppUser)
+            .Include(uf => uf.AppUserFriend)
             .Where(uf => uf.AppUserId == userId && uf.IsConfirmed)
             .ToListAsync();
     }
@@ -35,15 +36,25 @@ public class UserFriendsRepository : GenericRepository<UserFriends>, IUserFriend
 
     public async Task SendFriendRequestAsync(int userId, int friendId)
     {
-        var userFriend = new UserFriends
-        {
-            AppUserId = userId,
-            AppUserFriendId = friendId,
-            IsConfirmed = false
-        };
+        var existingFriendship = await _context.UserFriends
+            .FirstOrDefaultAsync(uf => uf.AppUserId == userId && uf.AppUserFriendId == friendId);
 
-        await _context.UserFriends.AddAsync(userFriend);
-        await _context.SaveChangesAsync();
+        if (existingFriendship == null)
+        {
+            var userFriend = new UserFriends
+            {
+                AppUserId = userId,
+                AppUserFriendId = friendId,
+                IsConfirmed = false
+            };
+
+            await _context.UserFriends.AddAsync(userFriend);
+            await _context.SaveChangesAsync();
+        }
+        else
+        {
+            throw new InvalidOperationException("Friendship already exists.");
+        }
     }
 
     public async Task AcceptFriendRequestAsync(int userId, int friendId)
@@ -54,6 +65,15 @@ public class UserFriendsRepository : GenericRepository<UserFriends>, IUserFriend
         if (userFriend != null)
         {
             userFriend.IsConfirmed = true;
+            
+            var reciprocalUserFriend = new UserFriends
+            {
+                AppUserId = userId,
+                AppUserFriendId = friendId,
+                IsConfirmed = true
+            };
+
+            await _context.UserFriends.AddAsync(reciprocalUserFriend);
             await _context.SaveChangesAsync();
         }
     }

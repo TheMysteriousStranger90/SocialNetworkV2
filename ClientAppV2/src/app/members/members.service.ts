@@ -158,7 +158,7 @@ export class MembersService {
 
   getFriendsByUserName() {
     if (this.user) {
-      return this.http.get<Member[]>(this.baseUrl + 'friends/' + this.user.username);
+      return this.http.get<string[]>(this.baseUrl + 'friends/' + this.user.username);
     } else {
       return throwError('User is not logged in');
     }

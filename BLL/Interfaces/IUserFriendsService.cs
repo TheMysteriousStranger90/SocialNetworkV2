@@ -4,7 +4,7 @@ namespace BLL.Interfaces;
 
 public interface IUserFriendsService
 {
-    Task<IEnumerable<UserFriendsDto>> GetFriendsByUserNameAsync(string userName);
+    Task<IEnumerable<string>> GetFriendsByUserNameAsync(string userName);
     Task<IEnumerable<UserFriendsDto>> GetFriendRequestsByUserNameAsync(string userName);
     Task<bool> AreUsersFriendsAsync(string userName, string friendName);
     Task SendFriendRequestAsync(string userName, string friendName);

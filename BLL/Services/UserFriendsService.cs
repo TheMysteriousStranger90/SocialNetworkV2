@@ -16,11 +16,11 @@ public class UserFriendsService : IUserFriendsService
         _mapper = mapper;
     }
     
-    public async Task<IEnumerable<UserFriendsDto>> GetFriendsByUserNameAsync(string userName)
+    public async Task<IEnumerable<string>> GetFriendsByUserNameAsync(string userName)
     {
         var user = await _unitOfWork.UserRepository.GetUserByUsernameAsync(userName);
         var friends = await _unitOfWork.UserFriendsRepository.GetFriendsByUserIdAsync(user.Id);
-        return _mapper.Map<IEnumerable<UserFriendsDto>>(friends);
+        return friends.Select(f => f.AppUserFriend.UserName);
     }
 
     public async Task<IEnumerable<UserFriendsDto>> GetFriendRequestsByUserNameAsync(string userName)

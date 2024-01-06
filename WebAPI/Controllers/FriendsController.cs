@@ -16,7 +16,7 @@ public class FriendsController : BaseApiController
     }
 
     [HttpGet("{userName}")]
-    public async Task<ActionResult<IEnumerable<UserFriendsDto>>> GetFriendsByUserName(string userName)
+    public async Task<ActionResult<IEnumerable<string>>> GetFriendsByUserName(string userName)
     {
         try
         {

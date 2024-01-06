@@ -8,7 +8,7 @@ import { MembersService } from 'src/app/members/members.service';
   styleUrls: ['./friend-list.component.scss']
 })
 export class FriendListComponent implements OnInit {
-  friendsListUsers: any;
+  friendsListUsers: string[] | undefined;
 
   constructor(private membersService: MembersService, private toastr: ToastrService) {
   }
