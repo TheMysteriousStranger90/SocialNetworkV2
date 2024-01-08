@@ -14,9 +14,6 @@
       <button mat-icon-button (click)="sendFriendRequest(member)">
         <mat-icon>person_add</mat-icon>
       </button>
-      <button mat-icon-button routerLink="/members/{{member.userName}}" [queryParams]="{tab: 'Messages'}">
-        <mat-icon>send</mat-icon>
-      </button>
     </div>
   </div>
   <mat-card-content class="p-1">

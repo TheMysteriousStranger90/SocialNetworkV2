@@ -1,0 +1,47 @@
+.row {
+  color: white;
+
+  .col-4 {
+    mat-card {
+      padding-left: 20px;
+
+      img {
+        max-width: 140px;
+        border: 2px solid #3a3a3a;
+      }
+    }
+  }
+
+  .col-8 {
+    mat-tab-group {
+      padding-left: 20px;
+
+      mat-tab {
+        h4 {
+          font-weight: bold;
+          color: #9f7aea;
+        }
+
+        p {
+          font-size: 14px;
+          line-height: 1.5;
+        }
+      }
+    }
+  }
+}
+
+mat-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+
+  mat-card-content {
+    overflow-y: auto;
+  }
+
+  mat-card-actions {
+    margin-top: auto;
+  }
+}

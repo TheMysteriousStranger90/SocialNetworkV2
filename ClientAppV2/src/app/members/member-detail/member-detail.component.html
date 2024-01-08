@@ -1,1 +1,62 @@
-<p>member-detail works!</p>
+<div class="row">
+  <div class="col-4">
+    <mat-card>
+      <img mat-card-image [src]="member.photoUrl || './assets/user.png'" [alt]="member.userName">
+      <mat-card-content>
+        <div *ngIf="(presenceService.onlineUsers$ | async)?.includes(member.userName)">
+          <mat-icon>person</mat-icon> Online now
+        </div>
+        <div>
+          <strong>Location:</strong>
+          <p>{{member.city}}, {{member.country}}</p>
+        </div>
+        <div>
+          <strong>Gender:</strong>
+          <p>{{member.gender}}</p>
+        </div>
+        <div>
+          <strong>Age:</strong>
+          <p>{{member.age}}</p>
+        </div>
+        <div>
+          <strong>Last active:</strong>
+          <p>{{member.lastActive | timeago}}</p>
+        </div>
+        <div>
+          <strong>Member since:</strong>
+          <p>{{member.created | date:'dd MMM yyyy'}}</p>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        
+        <button mat-button color="accent" (click)="selectTab(3)">Message</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <div class="col-8">
+    <mat-tab-group #memberTabs (selectedTabChange)="onTabActivated($event)">
+      <mat-tab label="About {{member.userName}}">
+        <h4>Description: </h4>
+        <p>{{member.introduction}}</p>
+        <h4>Looking for: </h4>
+        <p>{{member.lookingFor}}</p>
+        <h4>Relationship Status: </h4>
+        <p>{{member.relationshipStatus}}</p>
+        <h4>Education: </h4>
+        <p>{{member.education}}</p>
+        <h4>Work: </h4>
+        <p>{{member.work}}</p>
+      </mat-tab>
+      <mat-tab label="Interests">
+        <h4>Interests</h4>
+        <p>{{member.interests}}</p>
+      </mat-tab>
+      <mat-tab label="Photos">
+        <gallery *ngIf="memberTabs.selectedIndex === 2" [items]="images" class="gallery"></gallery>
+      </mat-tab>
+      <mat-tab label="Messages">
+        <app-member-messages [username]="member.userName"></app-member-messages>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

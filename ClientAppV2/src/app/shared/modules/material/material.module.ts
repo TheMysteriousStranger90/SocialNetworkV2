@@ -21,6 +21,9 @@ import {MatPaginatorModule} from "@angular/material/paginator";
 import { MatTableModule } from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
+
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatDialogModule } from '@angular/material/dialog';
 @NgModule({
   declarations: [],
   imports: [
@@ -47,6 +50,10 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatTableModule,
     MatSelectModule,
     MatTabsModule,
+
+
+    MatGridListModule,
+    MatDialogModule,
   ],
   exports: [
     MatFormFieldModule,
@@ -71,6 +78,10 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatTableModule,
     MatSelectModule,
     MatTabsModule,
+
+
+    MatGridListModule,
+    MatDialogModule,
   ]
 })
 

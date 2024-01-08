@@ -21,6 +21,7 @@ import { MemberCardComponent } from './members/member-card/member-card.component
 import { MemberListComponent } from './members/member-list/member-list.component';
 import { MemberMessagesComponent } from './members/member-messages/member-messages.component';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
+import { GalleryModule } from 'ng-gallery';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { MemberDetailComponent } from './members/member-detail/member-detail.com
     MemberDetailComponent
   ],
   imports: [
+    GalleryModule,
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,

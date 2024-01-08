@@ -30,6 +30,8 @@ export class MemberMessagesComponent implements OnInit, AfterViewChecked {
   }
 
   private scrollToBottom(): void {
-    this.scrollMe.nativeElement.scrollTop = this.scrollMe.nativeElement.scrollHeight;
+    if (this.scrollMe && this.scrollMe.nativeElement) {
+      this.scrollMe.nativeElement.scrollTop = this.scrollMe.nativeElement.scrollHeight;
+    }
   }
 }

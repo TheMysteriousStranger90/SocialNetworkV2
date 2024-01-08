@@ -1,3 +1,8 @@
+.chat {
+  height: 550px;
+  overflow: auto;
+}
+
 .chat li {
   margin-bottom: 20px;
   padding-bottom: 20px;
@@ -6,4 +11,25 @@
 
 .rounded-circle {
   max-height: 40px;
+}
+
+mat-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  mat-card-content {
+    flex-grow: 1;
+    overflow: auto;
+    padding: 10px;
+  }
+
+  mat-card-actions {
+    flex-shrink: 0;
+  }
+}
+
+.btn-primary {
+  padding-left: 20px;
+  margin: 10px;
 }
