@@ -20,6 +20,7 @@ import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import { MatTableModule } from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
+import { MatTabsModule } from '@angular/material/tabs';
 @NgModule({
   declarations: [],
   imports: [
@@ -44,7 +45,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatButtonToggleModule,
     MatPaginatorModule,
     MatTableModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTabsModule,
   ],
   exports: [
     MatFormFieldModule,
@@ -67,7 +69,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatButtonToggleModule,
     MatPaginatorModule,
     MatTableModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTabsModule,
   ]
 })
 

@@ -7,7 +7,7 @@ namespace BLL.Interfaces;
 
 public interface IUserService
 {
-    Task UpdateUserAsync(AppUserDto userDto);
+    Task UpdateUserAsync(MemberUpdateDto memberUpdateDto, string userName);
     Task<AppUserDto> GetUserByIdAsync(int id);
     Task<IEnumerable<AppUserDto>> GetUsersAsync();
     Task<AppUserDto> GetUserByUsernameAsync(string username);

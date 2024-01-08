@@ -21,21 +21,27 @@ public class AutoMapperProfile : Profile
 
         CreateMap<AppUser, AppUserDto>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id));
-        
+
         CreateMap<Photo, PhotoDto>();
+
         CreateMap<Photo, PhotoForApprovalDto>();
+
         CreateMap<Specialization, SpecializationDto>();
+
         CreateMap<RegisterDto, AppUser>();
+
         CreateMap<Message, MessageDto>()
             .ForMember(d => d.SenderPhotoUrl, o => o.MapFrom(s => s.Sender.Photos
                 .FirstOrDefault(x => x.IsMain).Url))
             .ForMember(d => d.RecipientPhotoUrl, o => o.MapFrom(s => s.Recipient.Photos
                 .FirstOrDefault(x => x.IsMain).Url));
+
         CreateMap<DateTime, DateTime>().ConvertUsing(d => DateTime.SpecifyKind(d, DateTimeKind.Utc));
         CreateMap<DateTime?, DateTime?>()
             .ConvertUsing(d => d.HasValue ? DateTime.SpecifyKind(d.Value, DateTimeKind.Utc) : null);
+
         CreateMap<RatingDto, Rating>();
-        
+
         CreateMap<Event, EventDto>()
             .ForMember(dest => dest.Participants, opt => opt.MapFrom(src => src.Participants));
 
@@ -54,18 +60,10 @@ public class AutoMapperProfile : Profile
 
         CreateMap<Specialization, SpecializationDto>();
 
-        /*
-        CreateMap<UserFriends, UserFriendsDto>()
-            .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.AppUser.UserName));
-        */
-        
-        /*
-        CreateMap<UserFriends, UserFriendsDto>()
-            .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.AppUserFriend.UserName));  // Map from the friend user
-        */
-        
+        CreateMap<MemberUpdateDto, AppUser>();
+
         CreateMap<UserFriends, UserFriendsDto>()
             .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.AppUser.UserName))
-            .ForMember(dest => dest.FriendName, opt => opt.MapFrom(src => src.AppUserFriend.UserName)); 
+            .ForMember(dest => dest.FriendName, opt => opt.MapFrom(src => src.AppUserFriend.UserName));
     }
 }

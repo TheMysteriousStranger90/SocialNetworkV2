@@ -116,13 +116,13 @@ public class UsersController : BaseApiController
     }
 
     [HttpPut("{username}")]
-    public async Task<ActionResult> UpdateUser(string username, AppUserDto userDto)
+    public async Task<ActionResult> UpdateUser(string username, MemberUpdateDto userDto)
     {
         try
         {
             if (username != User.GetUserName()) return Unauthorized();
 
-            await _userService.UpdateUserAsync(userDto);
+            await _userService.UpdateUserAsync(userDto, username);
 
             return NoContent();
         }

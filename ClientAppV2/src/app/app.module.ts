@@ -20,6 +20,7 @@ import { HomeComponent } from './home/home.component';
 import { MemberCardComponent } from './members/member-card/member-card.component';
 import { MemberListComponent } from './members/member-list/member-list.component';
 import { MemberMessagesComponent } from './members/member-messages/member-messages.component';
+import { MemberDetailComponent } from './members/member-detail/member-detail.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { MemberMessagesComponent } from './members/member-messages/member-messag
     HomeComponent,
     MemberCardComponent,
     MemberListComponent,
-    MemberMessagesComponent
+    MemberMessagesComponent,
+    MemberDetailComponent
   ],
   imports: [
     HttpClientModule,

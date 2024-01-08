@@ -8,6 +8,8 @@ import { FollowComponent } from './follow/follow.component';
 import { MessagesComponent } from './messages/messages.component';
 import { HomeComponent } from './home/home.component';
 import { MemberListComponent } from './members/member-list/member-list.component';
+import { MemberDetailComponent } from './members/member-detail/member-detail.component';
+import { MemberDetailedResolver } from './core/resolver/member-detailed.resolver';
 
 const routes: Routes = [
   {path: '', component: HomeComponent, data: {breadcrumb: 'Home'}},
@@ -17,6 +19,7 @@ const routes: Routes = [
     canActivate: [authGuard],
     children: [
       {path: 'members', component: MemberListComponent},
+      {path: 'members/:username', component: MemberDetailComponent, resolve: {member: MemberDetailedResolver}},
       {path: 'likes', component: LikesComponent},
       {path: 'notification', component: NotificationComponent},
       {path: 'follow', component: FollowComponent},

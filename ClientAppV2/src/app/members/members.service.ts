@@ -70,6 +70,19 @@ export class MembersService {
     )
   }
 
+  updateMember(member: Member) {
+    if (this.user) {
+      return this.http.put(this.baseUrl + 'users/' + this.user.username, member).pipe(
+        map(() => {
+          const index = this.members.indexOf(member);
+          this.members[index] = {...this.members[index], ...member}
+        })
+      )
+    } else {
+      return throwError('User is not logged in');
+    }
+  }
+
 
 
   addLike(username: string) {

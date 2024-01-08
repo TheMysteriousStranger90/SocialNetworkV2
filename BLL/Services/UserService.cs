@@ -44,10 +44,12 @@ public class UserService : IUserService
         return _mapper.Map<PhotoDto>(photo);
     }
 
-  public async Task UpdateUserAsync(AppUserDto userDto)
+    public async Task UpdateUserAsync(MemberUpdateDto memberUpdateDto, string userName)
     {
-        var user = await _unitOfWork.UserRepository.GetUserByUsernameAsync(userDto.Username);
-        _mapper.Map(userDto, user);
+        var user = await _unitOfWork.UserRepository.GetUserByUsernameAsync(userName);
+        if (user == null) throw new SocialNetworkException("Not Found!");
+
+        _mapper.Map(memberUpdateDto, user);
         _unitOfWork.UserRepository.Update(user);
         await _unitOfWork.SaveAsync();
     }
