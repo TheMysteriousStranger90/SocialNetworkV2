@@ -37,12 +37,13 @@ public class RatingService : IRatingService
 
     public async Task AddRatingToPhotoAsync(RatingDto ratingDto)
     {
-        var rating = _mapper.Map<Rating>(ratingDto);
-        await _unitOfWork.RatingRepository.AddRatingToPhotoAsync(rating.UserId, rating.PhotoId, rating.Value);
+        var user = await _unitOfWork.UserRepository.GetUserByUsernameAsync(ratingDto.VoterUsername);
+        await _unitOfWork.RatingRepository.AddRatingToPhotoAsync(user.Id, ratingDto.PhotoId, ratingDto.Value);
     }
 
     public async Task UpdateRatingAsync(RatingDto ratingDto)
     {
-        await _unitOfWork.RatingRepository.UpdateRatingAsync(ratingDto.UserId, ratingDto.PhotoId, ratingDto.Value);
+        var user = await _unitOfWork.UserRepository.GetUserByUsernameAsync(ratingDto.VoterUsername);
+        await _unitOfWork.RatingRepository.UpdateRatingAsync(user.Id, ratingDto.PhotoId, ratingDto.Value);
     }
 }

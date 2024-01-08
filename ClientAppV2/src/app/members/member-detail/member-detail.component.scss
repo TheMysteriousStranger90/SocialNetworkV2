@@ -34,14 +34,21 @@
 mat-card {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   height: 100%;
 
   mat-card-content {
-    overflow-y: auto;
+    flex-grow: 1;
+    overflow: auto;
   }
 
   mat-card-actions {
-    margin-top: auto;
+    flex-shrink: 0;
+  }
+
+  mat-card-image {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 }

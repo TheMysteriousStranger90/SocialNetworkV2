@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Message } from '../shared/models/message';
 import { Pagination } from '../shared/models/pagination';
 import { MessagesService } from './messages.service';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-messages',
@@ -11,7 +12,12 @@ import { MessagesService } from './messages.service';
 export class MessagesComponent {
 
   messages?: Message[];
-  pagination?: Pagination;
+  pagination: Pagination = {
+    currentPage: 1,
+    itemsPerPage: 8,
+    totalItems: 0,
+    totalPages: 0
+  };
   container = 'Unread';
   pageNumber = 1;
   pageSize = 8;
@@ -29,13 +35,16 @@ export class MessagesComponent {
 
   loadMessages() {
     this.loading = true;
-    this.messagesService.getMessages(this.pageNumber, this.pageSize, this.container).subscribe({
-      next: response => {
+    this.messagesService.getMessages(this.pagination.currentPage, this.pagination.itemsPerPage, this.container)
+      .subscribe(response => {
         this.messages = response.result;
-        this.pagination = response.pagination;
+        if (response.pagination) {
+          this.pagination = response.pagination;
+        }
         this.loading = false;
-      }
-    })
+      }, error => {
+        this.loading = false;
+      });
   }
 
   deleteMessage(id: number) {
@@ -44,11 +53,10 @@ export class MessagesComponent {
     })
   }
 
-  pageChanged(event: any) {
-    if (this.pageNumber !== event.page) {
-      this.pageNumber = event.page;
-      this.loadMessages();
-    }
+  pageChanged(event: PageEvent) {
+    this.pagination.currentPage = event.pageIndex + 1;
+    this.pagination.itemsPerPage = event.pageSize;
+    this.loadMessages();
   }
 }
 

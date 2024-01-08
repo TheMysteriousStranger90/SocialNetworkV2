@@ -10,11 +10,6 @@
       *ngIf="(messageService.messageThread$ | async)!.length > 0" class="chat">
       <mat-list-item *ngFor="let message of (messageService.messageThread$ | async)">
         <div>
-          <span class="chat-img float-end me-2">
-            <img mat-card-avatar class="rounded-circle"
-                 src="{{message.senderPhotoUrl || './assets/user.png'}}"
-                 alt="image of user">
-          </span>
           <div class="chat-body">
             <div class="header">
               <small class="text-muted">

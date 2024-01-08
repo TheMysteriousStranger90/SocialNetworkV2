@@ -1,5 +1,6 @@
 export interface Rating {
-  userId: number;
+  voterUsername: string;
+  photoOwnerUsername: string;
   photoId: number;
   value: number;
 }

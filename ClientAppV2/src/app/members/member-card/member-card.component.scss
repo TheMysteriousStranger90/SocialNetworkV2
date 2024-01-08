@@ -1,3 +1,9 @@
+.member-image {
+  max-width: 128px;
+  max-height: 128px;
+}
+
+
 mat-card:hover img {
   transform: scale(1.2, 1.2);
   transition-duration: 500ms;

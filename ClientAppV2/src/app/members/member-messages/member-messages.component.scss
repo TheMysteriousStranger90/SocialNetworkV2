@@ -1,5 +1,10 @@
+.chat-body {
+  width: 80%;
+  padding: 0 10px;
+}
+
 .chat {
-  height: 550px;
+  height: 450px;
   overflow: auto;
 }
 
@@ -14,8 +19,6 @@
 }
 
 mat-card {
-  display: flex;
-  flex-direction: column;
   height: 100%;
 
   mat-card-content {
@@ -32,4 +35,8 @@ mat-card {
 .btn-primary {
   padding-left: 20px;
   margin: 10px;
+}
+
+.text-muted {
+  font-size: 0.875em;
 }

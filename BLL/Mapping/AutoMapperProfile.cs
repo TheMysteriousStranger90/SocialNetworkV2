@@ -41,6 +41,10 @@ public class AutoMapperProfile : Profile
             .ConvertUsing(d => d.HasValue ? DateTime.SpecifyKind(d.Value, DateTimeKind.Utc) : null);
 
         CreateMap<RatingDto, Rating>();
+        
+        CreateMap<Rating, RatingDto>()
+            .ForMember(dest => dest.VoterUsername, opt => opt.MapFrom(src => src.User.UserName))
+            .ForMember(dest => dest.PhotoOwnerUsername, opt => opt.MapFrom(src => src.Photo.AppUser.UserName));
 
         CreateMap<Event, EventDto>()
             .ForMember(dest => dest.Participants, opt => opt.MapFrom(src => src.Participants));

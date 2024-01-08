@@ -1,6 +1,6 @@
 <mat-card class="card mb-4" *ngIf="member">
   <div class="card-img-wrapper">
-    <img mat-card-image src="{{member.photoUrl || './assets/user.png'}}" alt="{{member.userName}}">
+    <img mat-card-image src="{{member.photoUrl || './assets/user.png'}}" alt="{{member.userName}}" class="member-image">
     <div class="member-icons animate text-center">
       <button mat-icon-button routerLink="/members/{{member.userName}}">
         <mat-icon>person</mat-icon>
