@@ -10,6 +10,7 @@ import { MessagesService } from 'src/app/messages/messages.service';
 import { AccountService } from 'src/app/account/account.service';
 import { GalleryItem, GalleryModule, ImageItem } from 'ng-gallery';
 import { Rating } from 'src/app/shared/models/rating';
+import { RatingService } from 'src/app/rating/rating.service';
 
 @Component({
   selector: 'app-member-detail',
@@ -26,8 +27,9 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
   @Input() photoId: number | undefined;
 
   averageRating: number | undefined;
+  userRating: number | undefined;
 
-  constructor(public presenceService: PresenceService, private route: ActivatedRoute,
+  constructor(private ratingService: RatingService, public presenceService: PresenceService, private route: ActivatedRoute,
               private messageService: MessagesService, private accountService: AccountService) {
     this.accountService.currentUser$.pipe(take(1)).subscribe({
       next: user => {
@@ -41,6 +43,10 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
       next: data => {
         this.member = data['member'];
         this.getImages();
+
+        this.ratingService.getAverageRatingForPhoto(this.photoId!).subscribe({
+          next: averageRating => this.averageRating = averageRating
+        })
       }
     })
 
@@ -81,6 +87,36 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
     for (const photo of this.member?.photos) {
       this.photoId = photo.id;
       this.images.push(new ImageItem({ src: photo.url }));
+
+      this.ratingService.getAverageRatingForPhoto(this.photoId).subscribe({
+        next: averageRating => this.averageRating = averageRating
+      })
+
+      if (this.user) {
+        this.ratingService.getRatingForPhotoByUser(this.photoId, this.user.username).subscribe({
+          next: rating => this.userRating = rating.value
+        })
+      }
+    }
+  }
+
+  onRating(rating: number) {
+    const _rating: Rating = {
+      value: rating,
+      photoId: this.photoId!,
+      voterUsername: this.user!.username,
+      photoOwnerUsername: this.member.userName,
+    }
+    if (this.user && this.member) {
+      this.ratingService.getRatingForPhotoByUser(this.photoId!, this.user.username).subscribe({
+        next: existingRating => {
+          if (existingRating) {
+            this.ratingService.updateRating(_rating).subscribe();
+          } else {
+            this.ratingService.addRatingToPhoto(_rating).subscribe();
+          }
+        }
+      })
     }
   }
 }

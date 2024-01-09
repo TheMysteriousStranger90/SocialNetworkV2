@@ -63,4 +63,9 @@ public class RatingRepository : GenericRepository<Rating>, IRatingRepository
             await _context.SaveChangesAsync();
         }
     }
+    
+    public async Task<Rating> GetRatingForPhotoByUserAsync(int photoId, int userId)
+    {
+        return await _context.Ratings.FirstOrDefaultAsync(r => r.PhotoId == photoId && r.UserId == userId);
+    }
 }

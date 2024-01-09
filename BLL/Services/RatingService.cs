@@ -46,4 +46,11 @@ public class RatingService : IRatingService
         var user = await _unitOfWork.UserRepository.GetUserByUsernameAsync(ratingDto.VoterUsername);
         await _unitOfWork.RatingRepository.UpdateRatingAsync(user.Id, ratingDto.PhotoId, ratingDto.Value);
     }
+    
+    public async Task<RatingDto> GetRatingForPhotoByUserAsync(int photoId, string userName)
+    {
+        var user = await _unitOfWork.UserRepository.GetUserByUsernameAsync(userName);
+        var rating = await _unitOfWork.RatingRepository.GetRatingForPhotoByUserAsync(photoId, user.Id);
+        return _mapper.Map<RatingDto>(rating);
+    }
 }

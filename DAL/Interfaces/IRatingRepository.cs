@@ -9,4 +9,5 @@ public interface IRatingRepository : IGenericRepository<Rating>
     Task<double> GetAverageRatingForPhotoAsync(int photoId);
     Task AddRatingToPhotoAsync(int userId, int photoId, int value);
     Task UpdateRatingAsync(int userId, int photoId, int value);
+    Task<Rating> GetRatingForPhotoByUserAsync(int photoId, int userId);
 }

@@ -84,4 +84,18 @@ public class RatingController : BaseApiController
             return BadRequest(ex.Message);
         }
     }
+    
+    [HttpGet("photo/{photoId}/user/{userName}")]
+    public async Task<ActionResult<RatingDto>> GetRatingForPhotoByUser(int photoId, string userName)
+    {
+        try
+        {
+            var rating = await _ratingService.GetRatingForPhotoByUserAsync(photoId, userName);
+            return Ok(rating);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
 }

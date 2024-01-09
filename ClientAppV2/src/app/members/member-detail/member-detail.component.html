@@ -2,6 +2,7 @@
   <div class="col-4">
     <mat-card>
       <img mat-card-image [src]="member.photoUrl || './assets/user.png'" [alt]="member.userName">
+      Average: {{averageRating ? (averageRating | number: '1.1-1') : 'N/A'}} | Your vote: <app-rating [selectedRate]="userRating ? userRating : 0" (onRating)="onRating($event)"></app-rating>
       <mat-card-content>
         <div *ngIf="(presenceService.onlineUsers$ | async)?.includes(member.userName)">
           <mat-icon>person</mat-icon> Online now

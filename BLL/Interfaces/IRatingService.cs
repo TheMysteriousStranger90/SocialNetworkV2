@@ -9,4 +9,5 @@ public interface IRatingService
     Task<double> GetAverageRatingForPhotoAsync(int photoId);
     Task AddRatingToPhotoAsync(RatingDto ratingDto);
     Task UpdateRatingAsync(RatingDto ratingDto);
+    Task<RatingDto> GetRatingForPhotoByUserAsync(int photoId, string userName);
 }
