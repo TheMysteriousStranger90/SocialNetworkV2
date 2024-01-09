@@ -40,7 +40,7 @@ export class NotificationService {
     return this.http.put(this.baseUrl + 'notifications/' + userName + '/read-all', {});
   }
 
-  createPhotoNotification(photo: Photo) {
-    return this.http.post(this.baseUrl + 'notifications/photo-notification/' + photo.id, photo);
+  createPhotoNotification(userName: string) {
+    return this.http.post(this.baseUrl + 'notifications/photo-notification/' + userName, {});
   }
 }

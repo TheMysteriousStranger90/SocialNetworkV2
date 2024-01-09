@@ -46,13 +46,13 @@ public class NotificationRepository : GenericRepository<Notification>, INotifica
         await _context.SaveChangesAsync();
     }
 
-    public async Task CreatePhotoToAlbumNotificationAsync(Photo photo)
+    public async Task CreatePhotoToAlbumNotificationAsync(AppUser user)
     {
         var notification = new Notification
         {
-            Content = $"A new photo has been added {photo.AppUser.UserName}",
+            Content = $"A new main photo has been set {user.UserName}",
             CreatedAt = DateTime.UtcNow,
-            UserId = photo.AppUserId,
+            UserId = user.Id,
             IsRead = false
         };
         await _context.Notifications.AddAsync(notification);

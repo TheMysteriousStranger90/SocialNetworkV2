@@ -49,7 +49,7 @@ export class PhotoEditorComponent implements OnInit {
             if (p.id === photo.id) p.isMain = true;
           })
 
-          this.notificationService.createPhotoNotification(photo).subscribe({
+          this.notificationService.createPhotoNotification(this.member.userName).subscribe({
             next: () => {
               console.log('Photo notification created successfully');
             },

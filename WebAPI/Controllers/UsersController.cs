@@ -33,10 +33,11 @@ public class UsersController : BaseApiController
             var result = await _photoService.AddPhotoAsync(file);
             if (result.Error != null) return BadRequest(result.Error.Message);
 
-            var photoDto = _userService.AddPhotoByUser(result, currentUsername);
-            var user = _userService.GetMemberAsync(User.GetUserName(), true);
+            var photoDto = await _userService.AddPhotoByUser(result, currentUsername);
+
+            var user = await _userService.GetMemberAsync(User.GetUserName(), true);
             return CreatedAtAction(nameof(GetUser),
-                new { username = user.Result.UserName }, photoDto);
+                new { username = user.UserName }, photoDto);
         }
         catch (Exception ex)
         {

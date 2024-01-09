@@ -23,6 +23,7 @@ public class AutoMapperProfile : Profile
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id));
 
         CreateMap<Photo, PhotoDto>();
+        CreateMap<PhotoDto, Photo>();
 
         CreateMap<Photo, PhotoForApprovalDto>();
 

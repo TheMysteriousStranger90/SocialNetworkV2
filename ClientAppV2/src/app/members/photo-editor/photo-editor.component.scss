@@ -1,0 +1,52 @@
+div[fxLayout="row wrap"] {
+  div[fxFlex] {
+    margin: 20px;
+
+    h3 {
+      margin-bottom: 20px;
+    }
+
+    mat-card {
+      margin-bottom: 20px;
+
+      img {
+        margin-bottom: 10px;
+      }
+
+      mat-card-content {
+        margin-bottom: 10px;
+      }
+
+      mat-card-actions {
+        button {
+          margin-right: 10px;
+        }
+      }
+    }
+
+    .my-drop-zone {
+      border: 2px dashed #ccc;
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    input[type="file"] {
+      margin-bottom: 20px;
+    }
+
+    mat-table {
+      margin-bottom: 20px;
+    }
+
+    div {
+      mat-progress-bar {
+        margin-bottom: 10px;
+      }
+
+      button {
+        margin-right: 10px;
+      }
+    }
+  }
+}

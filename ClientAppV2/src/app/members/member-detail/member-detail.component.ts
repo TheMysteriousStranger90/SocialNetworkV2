@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MatTabGroup } from '@angular/material/tabs';
 import { take } from 'rxjs';
@@ -9,7 +9,6 @@ import { PresenceService } from 'src/app/core/services/presence.service';
 import { MessagesService } from 'src/app/messages/messages.service';
 import { AccountService } from 'src/app/account/account.service';
 import { GalleryItem, GalleryModule, ImageItem } from 'ng-gallery';
-import { RatingService } from 'src/app/core/rating/rating.service';
 import { Rating } from 'src/app/shared/models/rating';
 
 @Component({
@@ -24,11 +23,11 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
   user?: User;
   images: GalleryItem[] = [];
 
-  photoId: number | undefined;
+  @Input() photoId: number | undefined;
 
   averageRating: number | undefined;
 
-  constructor(private ratingService: RatingService, public presenceService: PresenceService, private route: ActivatedRoute,
+  constructor(public presenceService: PresenceService, private route: ActivatedRoute,
               private messageService: MessagesService, private accountService: AccountService) {
     this.accountService.currentUser$.pipe(take(1)).subscribe({
       next: user => {
@@ -42,12 +41,6 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
       next: data => {
         this.member = data['member'];
         this.getImages();
-
-        if (this.user && this.member) {
-          this.ratingService.getAverageRatingForPhoto(this.photoId!).subscribe({
-            next: averageRating => this.averageRating = averageRating
-          });
-        }
       }
     })
 
@@ -88,18 +81,6 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
     for (const photo of this.member?.photos) {
       this.photoId = photo.id;
       this.images.push(new ImageItem({ src: photo.url }));
-    }
-  }
-
-  onRating(rating: number) {
-    const _rating: Rating = {
-      value: rating,
-      photoId: this.photoId!,
-      voterUsername: this.user!.username,
-      photoOwnerUsername: this.member.userName,
-    }
-    if (this.user && this.member) {
-      this.ratingService.addRatingToPhoto(_rating);
     }
   }
 }

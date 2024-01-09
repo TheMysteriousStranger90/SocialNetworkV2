@@ -27,9 +27,16 @@ public class RatingRepository : GenericRepository<Rating>, IRatingRepository
 
     public async Task<double> GetAverageRatingForPhotoAsync(int photoId)
     {
-        return await _context.Ratings
+        var ratings = await _context.Ratings
             .Where(r => r.PhotoId == photoId)
-            .AverageAsync(r => r.Value);
+            .ToListAsync();
+
+        if (!ratings.Any())
+        {
+            return 0;
+        }
+
+        return ratings.Average(r => r.Value);
     }
 
     public async Task AddRatingToPhotoAsync(int userId, int photoId, int value)

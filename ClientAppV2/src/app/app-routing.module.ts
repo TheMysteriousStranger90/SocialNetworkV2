@@ -10,6 +10,8 @@ import { HomeComponent } from './home/home.component';
 import { MemberListComponent } from './members/member-list/member-list.component';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
 import { MemberDetailedResolver } from './core/resolver/member-detailed.resolver';
+import { MemberEditComponent } from './members/member-edit/member-edit.component';
+import {PreventUnsavedChangesGuard} from './core/guards/prevent-unsaved-changes.guard';
 
 const routes: Routes = [
   {path: '', component: HomeComponent, data: {breadcrumb: 'Home'}},
@@ -20,6 +22,7 @@ const routes: Routes = [
     children: [
       {path: 'members', component: MemberListComponent},
       {path: 'members/:username', component: MemberDetailComponent, resolve: {member: MemberDetailedResolver}},
+      {path: 'member/edit', component: MemberEditComponent, canDeactivate: [PreventUnsavedChangesGuard]},
       {path: 'likes', component: LikesComponent},
       {path: 'notification', component: NotificationComponent},
       {path: 'follow', component: FollowComponent},

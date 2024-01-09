@@ -8,5 +8,5 @@ public interface INotificationRepository : IGenericRepository<Notification>
     Task<IEnumerable<Notification>> GetUnreadNotificationsByUserIdAsync(int userId);
     Task MarkAsReadAsync(int notificationId);
     Task MarkAllAsReadAsync(int userId);
-    Task CreatePhotoToAlbumNotificationAsync(Photo photo);
+    Task CreatePhotoToAlbumNotificationAsync(AppUser user);
 }

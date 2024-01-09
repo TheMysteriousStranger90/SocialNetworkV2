@@ -1,0 +1,78 @@
+<div fxLayout="row" *ngIf="member">
+  <div fxFlex="25">
+    <h1>Your profile</h1>
+  </div>
+  <div fxFlex="75">
+    <mat-card *ngIf="editForm.dirty">
+      <mat-card-content>
+        <p><strong>Information: </strong>You have made changes.  Any unsaved changes will be lost</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div fxFlex="25">
+    <mat-card>
+      <img mat-card-image [src]="member.photoUrl || './assets/user.png'" alt="{{member.userName}}" class="member-image">
+      <mat-card-content>
+        <p><strong>First Name:</strong> {{member.firstName}}</p>
+        <p><strong>Last Name:</strong> {{member.lastName}}</p>
+        <p><strong>Gender:</strong> {{member.gender}}</p>
+        <p><strong>Location:</strong> {{member.city}}, {{member.country}}</p>
+        <p><strong>Age:</strong> {{member.age}}</p>
+        <p><strong>Last active:</strong> {{member.lastActive | timeago}}</p>
+        <p><strong>Member since:</strong> {{member.created | date: 'dd MMM yyyy'}}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button type="submit" [disabled]="!editForm.dirty"
+                form="editForm"
+                class="btn btn-secondary btn-lg col-12">Save changes</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <div fxFlex="75">
+    <mat-tab-group>
+      <mat-tab label="About {{member.userName}}">
+        <form #editForm="ngForm" id="editForm" (ngSubmit)="updateMember()">
+          <h4 class="mt-2">Description</h4>
+          <mat-form-field appearance="fill">
+            <textarea matInput [(ngModel)]="member.introduction" name="introduction"></textarea>
+          </mat-form-field>
+          <h4 class="mt-2">Looking for</h4>
+          <mat-form-field appearance="fill">
+            <textarea matInput [(ngModel)]="member.lookingFor" name="lookingFor"></textarea>
+          </mat-form-field>
+          <h4 class="mt-2">Interests</h4>
+          <mat-form-field appearance="fill">
+            <textarea matInput [(ngModel)]="member.interests" name="interests"></textarea>
+          </mat-form-field>
+          <h4 class="mt-2">Relationship Status</h4>
+          <mat-form-field appearance="fill">
+            <textarea matInput [(ngModel)]="member.relationshipStatus" name="relationshipStatus"></textarea>
+          </mat-form-field>
+          <h4 class="mt-2">Education</h4>
+          <mat-form-field appearance="fill">
+            <textarea matInput [(ngModel)]="member.education" name="education"></textarea>
+          </mat-form-field>
+          <h4 class="mt-2">Work</h4>
+          <mat-form-field appearance="fill">
+            <textarea matInput [(ngModel)]="member.work" name="work"></textarea>
+          </mat-form-field>
+          <h4 class="mt-2">Location Details: </h4>
+          <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
+            <mat-form-field appearance="fill">
+              <mat-label>City</mat-label>
+              <input matInput [(ngModel)]="member.city" name="city">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Country</mat-label>
+              <input matInput [(ngModel)]="member.country" name="country">
+            </mat-form-field>
+          </div>
+          <button mat-raised-button type="submit" [disabled]="!editForm.dirty">Save changes</button>
+        </form>
+      </mat-tab>
+      <mat-tab label="Edit Photos">
+        <app-photo-editor [member]="member"></app-photo-editor>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

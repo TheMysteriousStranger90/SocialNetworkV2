@@ -3,6 +3,7 @@ using BLL.Interfaces;
 using CloudinaryDotNet.Actions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using WebAPI.Extensions;
 
 namespace WebAPI.Controllers;
 
@@ -10,9 +11,12 @@ namespace WebAPI.Controllers;
 public class PhotosController : BaseApiController
 {
     private readonly IPhotoService _photoService;
+    private readonly IUserService _userService;
 
-    public PhotosController(IPhotoService photoService)
+    public PhotosController(IUserService userService,
+        IPhotoService photoService)
     {
+        _userService = userService;
         _photoService = photoService;
     }
 
@@ -30,20 +34,6 @@ public class PhotosController : BaseApiController
         }
     }
 
-    [HttpPost]
-    public async Task<ActionResult<ImageUploadResult>> AddPhoto(IFormFile file)
-    {
-        try
-        {
-            var result = await _photoService.AddPhotoAsync(file);
-            return Ok(result);
-        }
-        catch (Exception ex)
-        {
-            return BadRequest(ex.Message);
-        }
-    }
-
     [HttpGet("unapproved")]
     public async Task<ActionResult<IEnumerable<PhotoForApprovalDto>>> GetUnapprovedPhotos()
     {
@@ -51,34 +41,6 @@ public class PhotosController : BaseApiController
         {
             var photos = await _photoService.GetUnapprovedPhotos();
             return Ok(photos);
-        }
-        catch (Exception ex)
-        {
-            return BadRequest(ex.Message);
-        }
-    }
-
-    [HttpPut("approve/{photoId}")]
-    public async Task<ActionResult> ApprovePhoto(int photoId)
-    {
-        try
-        {
-            await _photoService.ApprovePhoto(photoId);
-            return Ok();
-        }
-        catch (Exception ex)
-        {
-            return BadRequest(ex.Message);
-        }
-    }
-
-    [HttpDelete("{id}")]
-    public async Task<ActionResult> DeletePhotoById(int id)
-    {
-        try
-        {
-            await _photoService.DeletePhotoByIdAsync(id);
-            return Ok();
         }
         catch (Exception ex)
         {
