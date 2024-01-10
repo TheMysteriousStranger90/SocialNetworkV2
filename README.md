@@ -18,6 +18,34 @@ Welcome to the SocialNetwork project, a comprehensive social networking applicat
 
 ## Running the Application
 
+To run this project, you need to create an appsettings.json file in the WebAPI section with the following structure:
+
+```
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*",
+  "ConnectionStrings": {
+    "DefaultConnection": "<.....>",
+    "Redis": "localhost"
+  },
+  "Token": {
+    "Key": "<......>",
+    "Issuer": "<......>"
+  },
+  "CloudinarySettings": {
+    "CloudName": "<.....>",
+    "ApiKey": "<.....>",
+    "ApiSecret": "<.....>"
+  }
+}
+```
+Replace "<Example>" with your actual data respectively.
+
 To run the application, Docker must be installed on your machine. Docker is used to run Redis and Redis Commander.
 
 Here's our docker-compose.yml file for running the services:
