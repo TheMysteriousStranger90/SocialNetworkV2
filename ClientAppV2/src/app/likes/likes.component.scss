@@ -5,8 +5,8 @@
 .container {
   display: flex;
   flex-direction: column;
-  height: 100vh;
   padding: 20px;
+  margin-top: -70px;
 
   .d-flex {
     flex-grow: 1;
@@ -17,7 +17,7 @@
   .row {
     display: flex;
     flex-wrap: wrap;
-    margin: 20px;
+    margin: 15px;
   }
 
   .col-2 {
@@ -28,5 +28,10 @@
 }
 
 .d-flex.justify-content-center {
-  margin-top: auto; // Push the element to the bottom
+  margin-top: auto;
 }
+
+mat-paginator {
+  margin-top: 160px;
+}
+
