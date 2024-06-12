@@ -10,6 +10,6 @@ export class UserParams {
   search = '';
 
   constructor(user: User) {
-    this.gender = user.gender === 'female' ? 'male' : 'female'
+    this.gender = '';
   }
 }

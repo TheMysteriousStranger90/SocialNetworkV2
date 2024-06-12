@@ -275,3 +275,6 @@ __pycache__/
 # tools/
 
 /WebAPI/appsettings.json
+
+.idea/
+.vs/

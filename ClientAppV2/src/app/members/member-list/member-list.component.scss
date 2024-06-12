@@ -1,7 +1,13 @@
-.mat-paginator {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
+mat-card {
+  margin-top: -70px;
+}
+
+mat-paginator {
+  margin-top: 70px;
+}
+
+.mat-card.mat-elevation-z8 {
+  padding-top: 80px;
 }
 
 button {

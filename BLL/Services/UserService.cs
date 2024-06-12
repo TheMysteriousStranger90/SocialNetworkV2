@@ -153,14 +153,9 @@ public class UserService : IUserService
     {
         var currentUser = await _unitOfWork.UserRepository.GetUserByUsernameAsync(userName);
         userParams.CurrentUsername = currentUser.UserName;
-        
-        if (string.IsNullOrEmpty(userParams.Gender))
-        {
-            userParams.Gender = currentUser.Gender == "male" ? "female" : "male";
-        }
 
         var query = _unitOfWork.UserRepository.GetMembersAsync(userParams);
-        
+
         return await Pagination<MemberDto>.CreateAsync(
             query.AsNoTracking().ProjectTo<MemberDto>(_mapper.ConfigurationProvider), 
             userParams.PageNumber, 
