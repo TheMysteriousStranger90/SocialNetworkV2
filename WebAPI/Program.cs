@@ -20,7 +20,6 @@ builder.Services.AddSwaggerDocumentation();
 
 builder.Services.AddEndpointsApiExplorer();
 
-
 var app = builder.Build();
 
 app.UseMiddleware<ExceptionMiddleware>();

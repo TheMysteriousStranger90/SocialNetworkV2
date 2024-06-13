@@ -43,6 +43,7 @@ const routes: Routes = [
     data: {breadcrumb: {skip: true}}
   },
   {path: '**', redirectTo: '', pathMatch: 'full'},
+  
 ];
 
 @NgModule({

@@ -41,6 +41,12 @@ To run this project, you need to create an appsettings.json file in the WebAPI s
     "CloudName": "<.....>",
     "ApiKey": "<.....>",
     "ApiSecret": "<.....>"
+  },
+  "Authentication": {
+    "Google": {
+      "ClientId": "<.....>",,
+      "ClientSecret": "<.....>"
+    }
   }
 }
 ```
@@ -95,6 +101,8 @@ The SocialNetwork application provides a variety of features that allow users to
 7. Like Users: If you like an user, show your appreciation by clicking on the 'Like' button.
 
 8. Rate Photos: You can rate photos posted by other users.
+
+9. This application also supports Google authentication. To use this feature, you need to set up a project in the Google Cloud Console, enable the Google+ API, and obtain the client ID and client secret.
 
 ## For Administrator Privileges
 Email: admin.example@outlook.com

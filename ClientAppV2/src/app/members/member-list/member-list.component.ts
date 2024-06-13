@@ -62,7 +62,17 @@ export class MemberListComponent implements OnInit {
       this.userParams.pageNumber = event.pageIndex + 1;
       this.userParams.pageSize = event.pageSize;
       this.memberService.setUserParams(this.userParams);
-      this.loadMembers();
+      this.memberService.getMembers(this.userParams).subscribe({
+        next: response => {
+          if (response.result && response.pagination) {
+            this.members = response.result;
+            this.pagination = response.pagination;
+          }
+        },
+        error: err => {
+          console.error('Error getting members:', err.error.errors);
+        }
+      });
     }
   }
 

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -24,6 +23,9 @@ import { MemberDetailComponent } from './members/member-detail/member-detail.com
 import { GalleryModule } from 'ng-gallery';
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { RatingComponent } from './rating/rating.component';
+import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
+import { GoogleLoginProvider } from '@abacritt/angularx-social-login';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,7 @@ import { RatingComponent } from './rating/rating.component';
     RatingComponent
   ],
   imports: [
+    SocialLoginModule,
     GalleryModule,
     HttpClientModule,
     BrowserModule,
@@ -55,6 +58,25 @@ import { RatingComponent } from './rating/rating.component';
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true},
+
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        lang: 'en',
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              environment.googleClientId
+            )
+          }
+        ],
+        onError: (err) => {
+          console.error(err);
+        }
+      } as SocialAuthServiceConfig,
+    }
   ],
   bootstrap: [AppComponent]
 })

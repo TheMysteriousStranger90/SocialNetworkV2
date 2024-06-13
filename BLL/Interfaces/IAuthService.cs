@@ -7,6 +7,7 @@ public interface IAuthService
     Task<AppUserDto> FindByEmailFromClaims(object ob);
     Task<AppUserDto> RegisterAsync(RegisterDto registerDto);
     Task<AppUserDto> LoginAsync(LoginDto loginDto);
+    Task<AppUserDto>  GoogleLoginAsync(ExternalAuthDto externalAuthn);
     Task<bool> CheckUserNameExistsAsync(string userName);
     Task<bool> CheckEmailExistsAsync(string email);
     Task<bool> ConfirmEmailAsync(string userName, string token);

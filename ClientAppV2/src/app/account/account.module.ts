@@ -5,6 +5,11 @@ import { SharedModule } from '../shared/shared.module';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
+import { GoogleSigninButtonModule } from '@abacritt/angularx-social-login';
+import {
+  GoogleLoginProvider,
+} from '@abacritt/angularx-social-login';
+
 @NgModule({
   declarations: [
     LoginComponent,
@@ -13,7 +18,8 @@ import { RegisterComponent } from './register/register.component';
   imports: [
     CommonModule,
     AccountRoutingModule,
-    SharedModule
+    SharedModule,
+    GoogleSigninButtonModule
   ]
 })
 export class AccountModule {

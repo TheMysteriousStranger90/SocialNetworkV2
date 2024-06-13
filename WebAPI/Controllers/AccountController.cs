@@ -43,6 +43,21 @@ public class AccountController : BaseApiController
         }
     }
 
+    [HttpPost("external-login")]
+    public async Task<ActionResult<AppUserDto>> GoogleLogin([FromBody] ExternalAuthDto externalAuthn)
+    {
+        try
+        {
+            var result = await _authService.GoogleLoginAsync(externalAuthn);
+            return Ok(result);
+
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+
     [HttpPost("confirm-email")]
     public async Task<ActionResult<bool>> ConfirmEmail(string userName, string token)
     {

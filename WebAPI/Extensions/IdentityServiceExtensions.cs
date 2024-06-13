@@ -45,6 +45,11 @@ public static class IdentityServiceExtensions
                         return Task.CompletedTask;
                     }
                 };
+            })
+            .AddGoogle(options =>
+            {
+                options.ClientId = config["Authentication:Google:ClientId"];
+                options.ClientSecret = config["Authentication:Google:ClientSecret"];
             });
 
         services.AddAuthorization(opt =>

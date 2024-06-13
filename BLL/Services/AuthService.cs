@@ -5,7 +5,9 @@ using BLL.Exceptions;
 using BLL.Interfaces;
 using DAL.Entities;
 using DAL.Interfaces;
+using Google.Apis.Auth;
 using Microsoft.EntityFrameworkCore;
+
 
 namespace BLL.Services;
 
@@ -21,8 +23,7 @@ public class AuthService : IAuthService
         _mapper = mapper;
         _tokenService = tokenService;
     }
-
-
+    
     public async Task<AppUserDto> FindByEmailFromClaims(object ob)
     {
         var claimsPrincipal = ob as ClaimsPrincipal;
@@ -61,7 +62,7 @@ public class AuthService : IAuthService
         var result = await _unitOfWork.UserManager.CreateAsync(user, registerDto.Password);
 
         if (!result.Succeeded) throw new SocialNetworkException("Error!");
-
+        
         var roleResult = await _unitOfWork.UserManager.AddToRoleAsync(user, "Member");
 
         if (!roleResult.Succeeded) throw new SocialNetworkException("Error!");
@@ -100,8 +101,54 @@ public class AuthService : IAuthService
             FirstName = user.FirstName,
             LastName = user.LastName,
             PhotoUrl = user.Photos.FirstOrDefault(x => x.IsMain)?.Url,
-            Gender = user.Gender
+            Gender = user.Gender,
+            ProfileVisibility = true,
         };
+    }
+    
+    public async Task<AppUserDto> GoogleLoginAsync(ExternalAuthDto externalAuthn)
+    {
+        var payload = await GoogleJsonWebSignature.ValidateAsync(externalAuthn.IdToken);
+        if (payload == null) throw new  SocialNetworkException("Invalid External Authentication.");
+        
+        var user = await _unitOfWork.UserManager.FindByEmailAsync(payload.Email);
+        if (user == null)
+        {
+            user = new AppUser
+            {
+                Email = payload.Email,
+                UserName = Guid.NewGuid().ToString(),
+                FirstName = payload.GivenName,
+                LastName = payload.FamilyName,
+                ProfileVisibility = true
+            };
+            
+            var createResult = await _unitOfWork.UserManager.CreateAsync(user);
+
+            if (!createResult.Succeeded)
+            {
+                var validationErrors = string.Join(", ", createResult.Errors.Select(x => x.Description));
+                throw new SocialNetworkException($"Error creating new Google user! Validation errors: {validationErrors}");
+            }
+            
+            var roleResult = await _unitOfWork.UserManager.AddToRoleAsync(user, "Member");
+
+            if (!roleResult.Succeeded)
+            {
+                throw new SocialNetworkException("Error adding new Google user to Member role!");
+            }
+        }
+
+        var appUserDto = new AppUserDto
+        {
+            Email = user.Email,
+            Token = await _tokenService.CreateToken(user),
+            Username = user.UserName,
+            FirstName = user.FirstName,
+            LastName = user.LastName,
+        };
+        
+        return appUserDto;
     }
 
     public async Task<bool> CheckUserNameExistsAsync(string userName)

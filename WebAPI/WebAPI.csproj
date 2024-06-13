@@ -7,11 +7,13 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Google.Apis.Auth" Version="1.68.0" />
+        <PackageReference Include="Google.Apis.Core" Version="1.68.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="7.0.20" />
         <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.14" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.10"/>
+
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0"/>
-
-
         <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.14" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.14"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.14" />

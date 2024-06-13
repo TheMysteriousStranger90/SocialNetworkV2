@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Member} from '../shared/models/member';
 import {Pagination} from '../shared/models/pagination';
 import {MembersService} from '../members/members.service';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-likes',
@@ -12,11 +13,10 @@ export class LikesComponent implements OnInit {
   members: Member[] | undefined;
   predicate = 'liked';
   pageNumber = 1;
-  pageSize = 8;
+  pageSize = 10;
   pagination: Pagination | undefined;
 
-  constructor(private memberService: MembersService) {
-  }
+  constructor(private memberService: MembersService) { }
 
   ngOnInit(): void {
     this.loadLikes();
@@ -28,11 +28,12 @@ export class LikesComponent implements OnInit {
         this.members = response.result;
         this.pagination = response.pagination;
       }
-    })
+    });
   }
 
-  pageChanged(event: any) {
-    this.pageNumber = event;
+  pageChanged(event: PageEvent) {
+    this.pageNumber = event.pageIndex + 1;
+    this.pageSize = event.pageSize;
     this.loadLikes();
   }
 }
