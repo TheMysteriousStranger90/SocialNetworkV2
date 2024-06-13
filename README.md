@@ -81,9 +81,9 @@ volumes:
   redis-data:
   ```
 
-## To start the services, navigate to the directory containing the docker-compose.yml file and execute the following command: docker-compose up
+To start the services, navigate to the directory containing the docker-compose.yml file and execute the following command: docker-compose up
 
-Environment Configuration
+## Environment Configuration
 In addition to the appsettings.json file, you also need to create an environment.ts file in the ClientAppV2/src/environments/ directory. This file should have the following structure:
 ```
 export const environment = {
