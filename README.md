@@ -81,7 +81,19 @@ volumes:
   redis-data:
   ```
 
-To start the services, navigate to the directory containing the docker-compose.yml file and execute the following command: docker-compose up
+## To start the services, navigate to the directory containing the docker-compose.yml file and execute the following command: docker-compose up
+
+Environment Configuration
+In addition to the appsettings.json file, you also need to create an environment.ts file in the ClientAppV2/src/environments/ directory. This file should have the following structure:
+```
+export const environment = {
+  production: false,
+  apiUrl: 'https://localhost:5001/api/',
+  hubUrl: 'https://localhost:5001/hubs/',
+  googleClientId: '<.....>'
+};
+```
+Replace the placeholders with your actual data respectively. This file is used to store environment-specific settings for the Angular application, such as the API URL and the Google Client ID for Google authentication.
 
 ## Usage
 The SocialNetwork application provides a variety of features that allow users to interact and connect with each other. Here's how you can use the application:
