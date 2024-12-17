@@ -1,8 +1,13 @@
+using System.Diagnostics;
 using DAL;
 using DAL.Context;
 using DAL.Entities;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
+using Serilog.Enrichers.Span;
+using Serilog.Exceptions;
 using WebAPI.Extensions;
 using WebAPI.Middleware;
 using WebAPI.SignalR;
@@ -20,9 +25,53 @@ builder.Services.AddSwaggerDocumentation();
 
 builder.Services.AddEndpointsApiExplorer();
 
+builder.Logging.ClearProviders();
+
+builder.Host.UseSerilog((context, loggerConfig) =>
+{
+    loggerConfig
+        .ReadFrom.Configuration(context.Configuration)
+        .Enrich.WithExceptionDetails()
+        .Enrich.FromLogContext()
+        .Enrich.With<ActivityEnricher>()
+        .WriteTo.Console(
+            outputTemplate:
+            "[{Timestamp:HH:mm:ss} {Level}] {SourceContext}{NewLine}{Message:lj}{NewLine}{Exception}{NewLine}")
+        .WriteTo.Seq(context.Configuration.GetValue<string>("SeqAddress")!);
+});
+
+builder.Services.AddProblemDetails(opts =>
+    opts.CustomizeProblemDetails = (ctx) =>
+    {
+        if (!ctx.ProblemDetails.Extensions.ContainsKey("traceId"))
+        {
+            string? traceId = Activity.Current?.Id ?? ctx.HttpContext.TraceIdentifier;
+            ctx.ProblemDetails.Extensions.Add(new KeyValuePair<string, object?>("traceId", traceId));
+        }
+
+        var exception = ctx.HttpContext.Features.Get<IExceptionHandlerFeature>()?.Error;
+        if (ctx.ProblemDetails.Status == 500)
+        {
+            ctx.ProblemDetails.Detail = "An error occurred in our API. Use the trace id when contacting us.";
+        }
+    }
+);
+
 var app = builder.Build();
 
+app.UseMiddleware<IpBlockMiddleware>();
+
 app.UseMiddleware<ExceptionMiddleware>();
+
+app.UseSerilogRequestLogging(options =>
+{
+    options.EnrichDiagnosticContext = (diagnosticContext, httpContext) =>
+    {
+        diagnosticContext.Set("client_id",
+            httpContext.User.Claims.FirstOrDefault(c => c.Type == "client_id")?.Value);
+    };
+});
+
 // Configure the HTTP request pipeline.
 app.UseSwaggerDocumentation();
 

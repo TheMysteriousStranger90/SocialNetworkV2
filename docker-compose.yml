@@ -7,6 +7,8 @@ services:
     command: ["redis-server", "--appendonly", "yes"]
     volumes:
       - redis-data:/data
+    networks:
+      - socialnetwork
 
   redis-commander:
     image: rediscommander/redis-commander:latest
@@ -18,6 +20,25 @@ services:
       - 8081:8081
     depends_on:
       - redis
+    networks:
+      - socialnetwork
+
+  seq:
+    image: datalust/seq
+    restart: always
+    ports:
+      - '5341:80'
+    environment:
+      - ACCEPT_EULA=Y
+    volumes:
+      - seq-data:/data
+    networks:
+      - socialnetwork
 
 volumes:
   redis-data:
+  seq-data:
+
+networks:
+  socialnetwork:
+    driver: bridge
