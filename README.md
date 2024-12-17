@@ -3,18 +3,20 @@
 ![Image 1](Screenshots/Screen1.png)
 ![Image 2](Screenshots/Screen2.png)
 ![Image 3](Screenshots/Screen3.png)
+![Image 4](Screenshots/Screen4.png)
 
 Welcome to the SocialNetwork project, a comprehensive social networking application developed using a N-Layered Architecture and Angular for the frontend.
 
 ## Technology Stack
-1. Backend Architecture: The backend of our application is structured using a N-Layered Architecture, ensuring a clean separation of concerns and a maintainable codebase.
+1. **Backend Architecture**: The backend of our application is structured using a N-Layered Architecture, ensuring a clean separation of concerns and a maintainable codebase.
 
-2. Frontend Framework: Angular, a robust platform for building web applications, is used for the frontend. It allows us to structure our codebase in a modular and maintainable manner.
+2. **Frontend Framework**: Angular, a robust platform for building web applications, is used for the frontend. It allows us to structure our codebase in a modular and maintainable manner.
 
-3. UI Components: For the user interface, we have chosen Angular Material. It's a UI component library that adheres to Material Design principles and offers a wide array of ready-to-use components.
+3. **UI Components**: For the user interface, we have chosen Angular Material. It's a UI component library that adheres to Material Design principles and offers a wide array of ready-to-use components.
 
-4. Caching: Redis, an open-source in-memory data structure store, is used for caching. It serves as a database, cache, and message broker.
+4. **Caching**: Redis, an open-source in-memory data structure store, is used for caching. It serves as a database, cache, and message broker.
 
+5. **Logging**: Serilog is used for logging.
 
 ## Running the Application
 
@@ -47,7 +49,21 @@ To run this project, you need to create an appsettings.json file in the WebAPI s
       "ClientId": "<.....>",,
       "ClientSecret": "<.....>"
     }
-  }
+  },
+  "SeqAddress": "http://localhost:5341",
+  "Serilog": {
+    "MinimumLevel": {
+      "Default": "Information",
+      "Override": {
+        "Microsoft.AspNetCore": "Warning",
+        "CarvedRock": "Debug",
+        "System": "Warning",
+        "Microsoft.Hosting.Diagnostics": "Warning",
+        "Microsoft.EntityFrameworkCore.Database.Command": "Warning"
+      }
+    }
+  },
+  "BlockedIPs": ""
 }
 ```
 Replace "<Example>" with your actual data respectively.
